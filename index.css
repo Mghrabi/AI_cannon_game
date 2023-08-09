@@ -1,0 +1,23 @@
+body {
+
+    /* background-color: white;
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin: 0; */
+
+    margin: 0;
+   background:darkgray;
+   overflow:hidden;
+   display: flex;
+   /* text-align:center; */
+}
+
+#canvas {
+    background: lightgray;
+} 
+#network {
+    background: red;
+} 
