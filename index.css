@@ -1,5 +1,4 @@
 body {
-
     /* background-color: white;
     display: flex;
     height: 100vh;
@@ -7,8 +6,7 @@ body {
     justify-content: center;
     align-items: center;
     margin: 0; */
-
-    margin: 0;
+   margin: 0;
    background:darkgray;
    overflow:hidden;
    display: flex;
@@ -19,5 +17,5 @@ body {
     background: lightgray;
 } 
 #network {
-    background: red;
+    background: black;
 } 
