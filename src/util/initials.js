@@ -1,0 +1,1 @@
+let gameScore = 0;

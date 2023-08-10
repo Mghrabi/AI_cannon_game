@@ -5,24 +5,31 @@ class Cannon {
         this.sensetivity = sensetivity;
         this.angle = 0;
         this.controls = new Controls()
+        //cannon position: at the center of the canvas 
+        this.position = { x: canvas.width / 2, y: canvas.height / 2 }
+        this.bulletSystem = new BulletSystem();
     }
 
     update(ctx) {
-        this.move();
+        this.action();
         this.draw(ctx);
     }
 
-    move() {
+    action() {
         if (this.controls.clockwise) {
-            this.angle += this.sensetivity;
+            this.angle = (this.angle + this.sensetivity) % 360;
         }
         if (this.controls.counterClockWise) {
-            this.angle -= this.sensetivity;
+            this.angle = (this.angle - this.sensetivity) % 360;
+        }
+        if (this.controls.throwBullet) {
+            this.bulletSystem.addBullet(this.position, this.angle);
         }
     }
 
     draw(ctx) {
         ctx.save();
+        console.log('score', gameScore)
         // ctx.beginPath();
         const gradient = ctx.createRadialGradient(canvas.width / 2, canvas.height / 2, 3, canvas.width / 2, canvas.height / 2, 40);
         gradient.addColorStop(0, "gray"); // Start color at the center
@@ -30,21 +37,24 @@ class Cannon {
 
         // Set the gradient as the fill style
         ctx.fillStyle = gradient;
-        ctx.arc(canvas.width / 2, canvas.height / 2, this.height/2, 0, 2 * Math.PI)
+        ctx.arc(canvas.width / 2, canvas.height / 2, this.height / 2, 0, 2 * Math.PI)
         ctx.fill();
 
+        //allow rotation
         ctx.translate(canvas.width / 2, canvas.height / 2)
-        // const angleValue = this.angle * Math.PI / 360
-
-        const angleValue = this.angle * Math.PI / 360
+        const angleValue = this.angle * 2 * Math.PI / 360
         ctx.rotate(angleValue);
         // ctx.translate(-canvas.width / 2, -canvas.height / 2)
 
+        //create the cannon gun
         ctx.beginPath();
         ctx.fillStyle = 'black'
-        // ctx.fillRect(- this.width / 2, - this.height / 2, this.width, this.height + 15);
-        ctx.roundRect(- this.width / 2, - this.height / 2, this.width, this.height + 17, [ 10, 10, 0, 0]);
+        const marginValue = 15
+        ctx.roundRect(- this.width / 2, - this.height / 2 - marginValue, this.width, this.height + marginValue, [0, 0, 10, 10]);
         ctx.fill();
+
+
+
         ctx.restore();
     }
 
