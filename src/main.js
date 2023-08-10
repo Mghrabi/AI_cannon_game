@@ -5,8 +5,8 @@ setupCanvas(network_canvas)
 
 ctx = canvas.getContext('2d')
 
-cannon = new Cannon(20, 85, 10);
-// cannon.update(ctx) 
+//20, 85
+cannon = new Cannon(17, 70);
 
 animate();
 function animate(){
