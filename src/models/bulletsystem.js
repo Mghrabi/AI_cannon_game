@@ -4,21 +4,25 @@ class BulletSystem {
         this.cannonWidth = cannonWidth
     }
 
-    addBullet(startPosition, angle){
-        this.bullets.push(new Bullet(startPosition, angle, this.cannonWidth));
-    }
-
     update(ctx){
         this.draw(ctx);
     }
 
+    addBullet(startPosition, angle){
+        this.bullets.push(new Bullet(startPosition, angle, this.cannonWidth));
+    }
+
     draw(ctx){
         //create a bullet shape
-        for (let b of this.bullets){
-            console.log('Bullets', this.bullets);
+        this.bullets = this.bullets.filter(b => {
+            if(Math.abs(b.currentPosition.x) > canvas.width/2 - 10  || Math.abs(b.currentPosition.y) > canvas.height/2 - 10){
+                b.unDraw(ctx);
+                return false
+            }
             b.update(ctx);
-        } 
-        //then move it in a certain direction accoridng to a point + angle
+            return true;
+        })
+        console.log('this.bullets', this.bullets);
 
     }
 

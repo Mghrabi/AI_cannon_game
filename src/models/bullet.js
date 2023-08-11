@@ -29,4 +29,15 @@ class Bullet {
         ctx.fill();
         ctx.restore();
     }
+
+    unDraw(ctx){
+        ctx.save();
+        ctx.beginPath();
+        // ctx.moveTo()
+        // ctx.restore();
+        ctx.translate(canvas.width / 2, canvas.height / 2);
+        ctx.arc(this.currentPosition.x, this.currentPosition.y, 0, 0, 2 * Math.PI)
+        ctx.fill();
+        ctx.restore();
+    }
 }
