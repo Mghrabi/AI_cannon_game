@@ -8,7 +8,7 @@ ctx = canvas.getContext('2d')
 
 //20, 85
 cannon = new Cannon(20, 70);
-const robotGen = new RobotGenerator()
+const robotGen = new NinjaGenerator()
 
 animate();
 function animate(){

@@ -1,11 +1,15 @@
-class Robot{
+//ninja weapon (I called it Ninja)
+class Ninja{
     constructor(angle){
         this.angleRadian = angle * Math.PI / 180;
-        //good value for now (you don't need to change it for each robot)
-        this.radius = 200;
+        //good value for now (you don't need to change it for each Ninja)
+        this.radius = 350;
         this.currentPosition = { x: this.radius* Math.sin(this.angleRadian), y: this.radius * -Math.cos(this.angleRadian) };
-        // this.image = new Image(100,100);this.image.src = '../../assets/star.png';
         this.image = document.getElementById('image')
+        this.sensetivity = 10; //for rotation
+        this.speed = 3//for linear movement
+        this.rotationAngle = 0 ;
+        this.imageSize = 40;
     }
 
     update(ctx){
@@ -14,8 +18,9 @@ class Robot{
     }
 
     move(){
-        this.radius-=2;
+        this.radius-=this.speed;
         this.currentPosition = { x: this.radius* Math.sin(this.angleRadian), y: this.radius * -Math.cos(this.angleRadian) };
+        this.rotationAngle = (this.rotationAngle + this.sensetivity) % 360;
     }
 
     draw(ctx){
@@ -23,7 +28,11 @@ class Robot{
         ctx.beginPath();
         ctx.translate(canvas.width / 2, canvas.height / 2);
         // ctx.rect(this.currentPosition.x,this.currentPosition.y, 20,20);
-        ctx.drawImage(this.image,  this.currentPosition.x, this.currentPosition.y, 40,40)
+        // ctx.drawImage(this.image,  this.currentPosition.x, this.currentPosition.y, 40,40)
+        ctx.translate(this.currentPosition.x , this.currentPosition.y );
+        ctx.rotate(this.rotationAngle * Math.PI/180);
+        ctx.translate(-this.currentPosition.x - this.imageSize/2, -this.currentPosition.y - this.imageSize/2);
+        ctx.drawImage(this.image,  this.currentPosition.x, this.currentPosition.y, this.imageSize, this.imageSize)
         ctx.fill();
         ctx.restore();
     }

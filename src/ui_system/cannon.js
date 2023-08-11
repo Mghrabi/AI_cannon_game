@@ -1,5 +1,5 @@
 class Cannon {
-    constructor(width, height, sensetivity = 5) {
+    constructor(width, height, sensetivity = 10) {
         this.width = width;
         this.height = height;
         this.sensetivity = sensetivity;
@@ -53,7 +53,7 @@ class Cannon {
         ctx.beginPath();
         ctx.fillStyle = 'black'
         const marginValue = 15
-        ctx.roundRect(- this.width / 2, - this.height / 2 - marginValue, this.width, this.height + marginValue, [0, 0, 10, 10]);
+        ctx.roundRect(- this.width / 2, - this.height / 2 - marginValue, this.width, this.height + marginValue + 5, [0, 0, 10, 10]);
         ctx.fill();
 
         //update bullets locaiton
