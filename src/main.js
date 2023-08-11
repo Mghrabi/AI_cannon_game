@@ -9,14 +9,15 @@ const game_score = 0;
 ctx = canvas.getContext('2d')
 
 //20, 85
-cannon = new Cannon(20, 70);
+const sensetivity = 10;
 const robotGen = new NinjaGenerator()
+const cannon = new Cannon(cannonWidth, cannonHeight, sensetivity);
 
 animate();
 function animate(){
     setupCanvas(canvas)
     setupCanvas(network_canvas)
-    cannon.update(ctx) 
+    cannon.update(ctx, robotGen.ninjas) 
     robotGen.update(ctx);
     window.requestAnimationFrame(animate)
 }

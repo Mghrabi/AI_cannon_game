@@ -11,9 +11,12 @@ class Cannon {
         //to make sure to not throw many bullets with one click
         this.bulletFlag = true 
         this.bulletTimeDelay = 100;
+        this.ninjasArr = []
     }
 
-    update(ctx) {
+
+    update(ctx, ninjasArr) {
+        this.ninjasArr = ninjasArr;
         this.action();
         this.draw(ctx);
     }
@@ -61,7 +64,7 @@ class Cannon {
 
         //update bullets locaiton
         ctx.restore();
-        this.bulletGenerator.update(ctx);
+        this.bulletGenerator.update(ctx, this.ninjasArr);
 
     }
 

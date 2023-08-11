@@ -2,11 +2,16 @@
 * add collicion detection + condition for ninjas to diappear
 * removing from the list as for bullets
 * game condition and score increase;
-* showing high score
-* game over and stop the game;
+* game over and stop the game; (make a message with gameover)
 
-// 
+
+//viualization
+
+//  
 * add sensors ()
+
+
+
 
 // network todo
 * build the network
@@ -16,6 +21,14 @@
 *make the model make the decision of moving to right and then increase the angle according to that
 *you need the model to be able to know the tip of the cannon;
 *
+
+
+
+
+
+
+
+
 
 
 //knowledge
