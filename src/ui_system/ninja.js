@@ -10,6 +10,8 @@ class Ninja{
         this.speed = 2//for linear movement
         this.rotationAngle = 0 ;
         this.imageSize = 60;
+        //if Math.abs is less than the circle cannon radius then
+        //you die
     }
 
     update(ctx){
@@ -40,10 +42,9 @@ class Ninja{
     unDraw(ctx){
         ctx.save();
         ctx.beginPath();
-        // ctx.moveTo()
-        // ctx.restore();
         ctx.translate(canvas.width / 2, canvas.height / 2);
-        ctx.rect(50,50, 0, 0);
+        ctx.translate(this.currentPosition.x , this.currentPosition.y);
+        ctx.drawImage(this.image,  this.currentPosition.x, this.currentPosition.y, 0, 0)
         ctx.fill();
         ctx.restore();
     }

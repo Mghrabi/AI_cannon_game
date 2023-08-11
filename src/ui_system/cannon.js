@@ -9,7 +9,8 @@ class Cannon {
         this.position = { x: canvas.width / 2, y: canvas.height / 2 }
         this.bulletGenerator = new bulletGenerator(width);
         //to make sure to not throw many bullets with one click
-        this.bulletFlag = false
+        this.bulletFlag = true 
+        this.bulletTimeDelay = 100;
     }
 
     update(ctx) {
@@ -24,8 +25,10 @@ class Cannon {
         if (this.controls.counterClockWise) {
             this.angle = (this.angle - this.sensetivity) % 360;
         }
-        if (this.controls.throwBullet) {
+        if (this.controls.throwBullet && this.bulletFlag) {
+            this.bulletFlag = false;
             this.bulletGenerator.addBullet(this.position, this.angle);
+            setTimeout(() => {this.bulletFlag = true}, this.bulletTimeDelay)
         }
     }
 

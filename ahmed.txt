@@ -1,5 +1,6 @@
 // todo 
 * add collicion detection + condition for ninjas to diappear
+* removing from the list as for bullets
 * game condition and score increase;
 * showing high score
 * game over and stop the game;

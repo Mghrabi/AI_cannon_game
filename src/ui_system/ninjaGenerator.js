@@ -8,7 +8,9 @@ class NinjaGenerator {
     }
 
     update(ctx) {
-        // this.generateNinja();
+        if(!gameOver){
+            this.generateNinja();
+        }
         this.draw(ctx)
     }
 
@@ -34,9 +36,15 @@ class NinjaGenerator {
     }
 
     draw(ctx) {
-        for (let r of this.ninjas) {
-            r.update(ctx);
-        }
+
+        this.ninjas = this.ninjas.filter(n => {
+            if(Math.abs(n.currentPosition.x) < cannonRadius  || Math.abs(n.currentPosition.y) < cannonRadius){
+                n.unDraw(ctx);
+                return false
+            }
+            n.update(ctx);
+            return true;
+        })
         console.log('this.Ninjas: ', this.ninjas);
     }
 }
