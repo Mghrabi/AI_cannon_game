@@ -36,8 +36,15 @@ class Cannon {
     }
 
     draw(ctx) {
+
         ctx.save();
-        console.log('score', gameScore)
+
+        ctx.beginPath()
+        ctx.font = "48px serif";
+        ctx.fillStyle = "black";
+        ctx.fillText("SCORE: ", canvas.width/2 - 80, 70);
+        ctx.fillStyle = 'green';
+        ctx.fillText(gameScore, canvas.width/2 + 100, 70);
         // ctx.beginPath();
         const gradient = ctx.createRadialGradient(canvas.width / 2, canvas.height / 2, 3, canvas.width / 2, canvas.height / 2, 40);
         gradient.addColorStop(0, "gray"); // Start color at the center

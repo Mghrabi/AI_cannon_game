@@ -39,6 +39,7 @@ class bulletGenerator {
 
             if(Math.abs(b.currentPosition.x) > canvas.width/2 - 10  || Math.abs(b.currentPosition.y) > canvas.height/2 - 10){
                 b.unDraw(ctx);
+                gameScore-=1;
                 return false
             }
             b.update(ctx);
