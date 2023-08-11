@@ -9,7 +9,9 @@ class bulletGenerator {
     }
 
     addBullet(startPosition, angle){
-        this.bullets.push(new Bullet(startPosition, angle, this.cannonWidth));
+        if(!gameOver){
+            this.bullets.push(new Bullet(startPosition, angle, this.cannonWidth));
+        }
     }
 
     draw(ctx){

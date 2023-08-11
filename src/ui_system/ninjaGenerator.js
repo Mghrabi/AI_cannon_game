@@ -9,7 +9,7 @@ class NinjaGenerator {
 
     update(ctx) {
         if(!gameOver){
-            this.generateNinja();
+            // this.generateNinja();
         }
         this.draw(ctx)
     }
@@ -38,7 +38,9 @@ class NinjaGenerator {
     draw(ctx) {
 
         this.ninjas = this.ninjas.filter(n => {
-            if(Math.abs(n.currentPosition.x) < cannonRadius  || Math.abs(n.currentPosition.y) < cannonRadius){
+            if(Math.abs(n.currentPosition.x) < cannonRadius  && Math.abs(n.currentPosition.y) < cannonRadius){
+                // make gameover 
+                // gameOver = true;
                 n.unDraw(ctx);
                 return false
             }

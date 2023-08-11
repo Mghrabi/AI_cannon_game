@@ -1,5 +1,7 @@
 canvas = document.getElementById('canvas');
 network_canvas = document.getElementById('network');
+const background_image = document.getElementById('background_image');
+setupCanvas(background_image);
 setupCanvas(canvas)
 setupCanvas(network_canvas)
 

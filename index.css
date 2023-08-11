@@ -14,7 +14,7 @@ body {
 }
 
 #canvas {
-    background: lightgray;
+    /* background: lightgray; */
 } 
 #network {
     background: black;
