@@ -7,9 +7,9 @@ class Ninja{
         this.currentPosition = { x: this.radius* Math.sin(this.angleRadian), y: this.radius * -Math.cos(this.angleRadian) };
         this.image = document.getElementById('image')
         this.sensetivity = 10; //for rotation
-        this.speed = 3//for linear movement
+        this.speed = 2//for linear movement
         this.rotationAngle = 0 ;
-        this.imageSize = 40;
+        this.imageSize = 60;
     }
 
     update(ctx){

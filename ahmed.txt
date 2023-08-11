@@ -1,10 +1,11 @@
 // todo 
-* creating a bullet in a certain direction  
-* make it move in a line (and then removed after reaching the end) 
-* make enemies blocks
-* make them move in the direction of sensors
-* make collicion detection
-* increase the score
+* add collicion detection + condition for ninjas to diappear
+* game condition and score increase;
+* showing high score
+* game over and stop the game;
+
+// 
+* add sensors ()
 
 // network todo
 * build the network
