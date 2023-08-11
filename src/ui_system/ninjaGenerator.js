@@ -52,7 +52,7 @@ class NinjaGenerator {
             }
             if((ninjaDistance < cannonRadius)){
                 // make gameover 
-                // gameOver = true;
+                gameOver = true;
                 n.unDraw(ctx);
                 return false
             }

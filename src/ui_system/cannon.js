@@ -39,13 +39,25 @@ class Cannon {
 
         ctx.save();
 
+        //display score
         ctx.beginPath()
         ctx.font = "48px serif";
         ctx.fillStyle = "black";
         ctx.fillText("SCORE: ", canvas.width/2 - 80, 70);
         ctx.fillStyle = 'green';
         ctx.fillText(gameScore, canvas.width/2 + 100, 70);
-        // ctx.beginPath();
+
+        //gameOver
+        if(gameOver){
+            ctx.rect(0, 0,canvas.width, canvas.height);
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.5)' 
+            ctx.fill();
+            ctx.font = "48px serif";
+            ctx.fillStyle = "white";
+            ctx.fillText("YOUR SCORE: "+ gameScore, canvas.width/2 - 140, canvas.height/2);
+            return 
+        }
+
         const gradient = ctx.createRadialGradient(canvas.width / 2, canvas.height / 2, 3, canvas.width / 2, canvas.height / 2, 40);
         gradient.addColorStop(0, "gray"); // Start color at the center
         gradient.addColorStop(1, "black"); // End color at the outer edge

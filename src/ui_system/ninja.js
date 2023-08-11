@@ -49,6 +49,9 @@ class Ninja{
         ctx.translate(this.currentPosition.x , this.currentPosition.y);
         ctx.drawImage(this.image,  this.currentPosition.x, this.currentPosition.y, 0, 0)
         ctx.fill();
+        // ctx.font = "48px serif";
+        // ctx.fillStyle = "green";
+        // ctx.fillText("+1", this.currentPosition.x, this.currentPosition.y);
         ctx.restore();
     }
 
