@@ -1,5 +1,5 @@
 class Cannon {
-    constructor(width, height, sensetivity = 30) {
+    constructor(width, height, sensetivity = 5) {
         this.width = width;
         this.height = height;
         this.sensetivity = sensetivity;
@@ -7,7 +7,9 @@ class Cannon {
         this.controls = new Controls()
         //cannon position: at the center of the canvas 
         this.position = { x: canvas.width / 2, y: canvas.height / 2 }
-        this.bulletSystem = new BulletSystem();
+        this.bulletSystem = new BulletSystem(width);
+        //to make sure to not throw many bullets with one click
+        this.bulletFlag = false
     }
 
     update(ctx) {
@@ -36,6 +38,7 @@ class Cannon {
         gradient.addColorStop(1, "black"); // End color at the outer edge
 
         // Set the gradient as the fill style
+        ctx.beginPath();
         ctx.fillStyle = gradient;
         ctx.arc(canvas.width / 2, canvas.height / 2, this.height / 2, 0, 2 * Math.PI)
         ctx.fill();
@@ -53,9 +56,10 @@ class Cannon {
         ctx.roundRect(- this.width / 2, - this.height / 2 - marginValue, this.width, this.height + marginValue, [0, 0, 10, 10]);
         ctx.fill();
 
-
-
+        //update bullets locaiton
         ctx.restore();
+        this.bulletSystem.update(ctx);
+
     }
 
 }

@@ -1,2 +1,21 @@
-// problems
-* degree of rotation (sesitivity)
+// todo 
+* creating a bullet in a certain direction  
+* make it move in a line (and then removed after reaching the end) 
+* make enemies blocks
+* make them move in the direction of sensors
+* make collicion detection
+* increase the score
+
+// network todo
+* build the network
+* 
+
+//network issues
+*make the model make the decision of moving to right and then increase the angle according to that
+*you need the model to be able to know the tip of the cannon;
+*
+
+
+//knowledge
+* beginPath is when you want to draw like lineTo moveTo arc
+* save() and restore() when you want to isolate some drawings environment

@@ -2,7 +2,7 @@ class Controls {
     constructor(){
         this.clockwise = false;
         this.counterClockWise = false; 
-        this.throwBullet = true;
+        this.throwBullet = false;
         this.#keyBoardEventListeners();
     }
 
