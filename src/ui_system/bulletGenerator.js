@@ -3,8 +3,6 @@ class bulletGenerator {
         this.bullets = [];
         this.cannonWidth = cannonWidth
         this.ninjasArr = [];
-        this.filterNinja = [];//indexes of ninjas to be filters so that we transfer that info 
-        //to ninjaGenerator to deal with them;
     }
 
     update(ctx, ninjasArr){
@@ -24,7 +22,10 @@ class bulletGenerator {
 
             const hitNinja = this.ninjasArr.some((n) => {
                 const hit = detectCollision(n.topRightCornerPosition, b.currentPosition);
-                if(hit){this.filterNinja.push(n.id)}
+                if(hit){
+                    console.log('after hit, id to add is ', n.id);
+                    filteredNinjas.push(n.id);
+                }
                 return hit;
             });
 

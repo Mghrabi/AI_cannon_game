@@ -9,4 +9,6 @@ let cannonHeight = 70;
 let imageSize = 75;
 
 //data to transfer from bulletGenerator to bulletGenerator
+//indexes of ninjas to be filters so that we transfer that info 
+//to ninjaGenerator to deal with them;
 let filteredNinjas = []; //ids of ninjas to filter
