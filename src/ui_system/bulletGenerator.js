@@ -1,4 +1,4 @@
-class BulletSystem {
+class bulletGenerator {
     constructor(cannonWidth){
         this.bullets = [];
         this.cannonWidth = cannonWidth
@@ -22,7 +22,7 @@ class BulletSystem {
             b.update(ctx);
             return true;
         })
-        console.log('this.bullets', this.bullets);
+        // console.log('this.bullets', this.bullets);
 
     }
 

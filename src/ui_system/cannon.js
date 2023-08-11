@@ -7,7 +7,7 @@ class Cannon {
         this.controls = new Controls()
         //cannon position: at the center of the canvas 
         this.position = { x: canvas.width / 2, y: canvas.height / 2 }
-        this.bulletSystem = new BulletSystem(width);
+        this.bulletGenerator = new bulletGenerator(width);
         //to make sure to not throw many bullets with one click
         this.bulletFlag = false
     }
@@ -25,7 +25,7 @@ class Cannon {
             this.angle = (this.angle - this.sensetivity) % 360;
         }
         if (this.controls.throwBullet) {
-            this.bulletSystem.addBullet(this.position, this.angle);
+            this.bulletGenerator.addBullet(this.position, this.angle);
         }
     }
 
@@ -58,7 +58,7 @@ class Cannon {
 
         //update bullets locaiton
         ctx.restore();
-        this.bulletSystem.update(ctx);
+        this.bulletGenerator.update(ctx);
 
     }
 

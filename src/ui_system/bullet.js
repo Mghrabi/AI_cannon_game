@@ -5,7 +5,6 @@ class Bullet {
         this.angleRadian = angle * Math.PI / 180;
         this.radius = 0
         this.currentPosition = { x: this.radius* Math.sin(this.angleRadian), y: this.radius * -Math.cos(this.angleRadian) };
-        this.angle = angle;
         this.cannonWidth = cannonWidth
     }
 
