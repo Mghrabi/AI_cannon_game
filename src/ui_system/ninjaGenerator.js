@@ -5,7 +5,7 @@ class NinjaGenerator {
         this.possibleAngles = [0, 45, 90, 135, 180, 225, 270, 315, 360];//all possible angles for ninja
         this.generateNow = true;
         //1500ms 
-        this.generationTime = 6000; //2 seconds
+        this.generationTime = 1500; //2 seconds
         this.idNumber = 0;
     }
 
@@ -26,7 +26,7 @@ class NinjaGenerator {
             this.generateNow = false;
             setTimeout(() => {
                 this.addNinja(chosenAngle1);
-                // this.addNinja(chosenAngle2);
+                this.addNinja(chosenAngle2);
                 this.generateNow = true;
             }, this.generationTime);
         }

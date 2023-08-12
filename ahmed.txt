@@ -1,11 +1,10 @@
 // todo 
-* add collicion detection + condition for ninjas to diappear
-* removing from the list as for bullets
-* game condition and score increase;
-* game over and stop the game; (make a message with gameover)
-
+*make the bullet get out from the tip of the cannon (avoid some issues)
+*make sensors + detection for sensors + define gaming over for network;
 
 //viualization
+* build the visualization
+* build the network itself
 
 //  
 * add sensors ()
