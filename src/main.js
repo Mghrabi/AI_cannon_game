@@ -12,6 +12,7 @@ ctx = canvas.getContext('2d')
 const sensetivity = 10;
 const robotGen = new NinjaGenerator()
 const cannon = new Cannon(cannonWidth, cannonHeight, sensetivity);
+const gameController = new GameController();
 
 animate();
 function animate(){
@@ -19,5 +20,13 @@ function animate(){
     setupCanvas(network_canvas)
     cannon.update(ctx, robotGen.ninjas) 
     robotGen.update(ctx);
+    gameController.update(ctx);
+    // gameController.update(ctx);
     window.requestAnimationFrame(animate)
 }
+
+//reset logic
+//gameover false
+//reset all bullets 
+//reset all ninjas
+//make score 0

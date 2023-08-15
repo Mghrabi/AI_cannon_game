@@ -38,23 +38,11 @@ class Cannon {
     draw(ctx) {
 
         ctx.save();
-
-        //display score
-        ctx.beginPath()
-        ctx.font = "48px serif";
-        ctx.fillStyle = "black";
-        ctx.fillText("SCORE: ", canvas.width/2 - 80, 70);
-        ctx.fillStyle = 'black';
-        ctx.fillText(gameScore, canvas.width/2 + 100, 70);
-
+        console.log('gameScore', gameScore)
         //gameOver
-        if(gameOver){
-            ctx.rect(0, 0,canvas.width, canvas.height);
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.5)' 
-            ctx.fill();
-            ctx.font = "48px serif";
-            ctx.fillStyle = "white";
-            ctx.fillText("YOUR SCORE: "+ gameScore, canvas.width/2 - 140, canvas.height/2);
+       if(gameOver){
+            //ui for gameover with respect to cannon
+            this.clear(ctx);
             return 
         }
 
@@ -85,6 +73,16 @@ class Cannon {
         ctx.restore();
         this.bulletGenerator.update(ctx, this.ninjasArr);
 
+    }
+
+    clear(ctx){
+        ctx.rect(0, 0,canvas.width, canvas.height);
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.5)' 
+        ctx.fill();
+        ctx.font = "48px serif";
+        ctx.fillStyle = "white";
+        ctx.fillText("YOUR SCORE: "+ gameScore, canvas.width/2 - 140, canvas.height/2);
+        this.bulletGenerator.clear(ctx);
     }
 
 }

@@ -1,9 +1,9 @@
 let gameScore = 0;
 let gameOver = false;
-let cannonRadius = 10;
 //cannon shape
 let cannonWidth = 20;
 let cannonHeight = 70;
+let cannonRadius = 10;
 
 //(ninja size)
 let imageSize = 75;

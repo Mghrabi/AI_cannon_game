@@ -1,6 +1,7 @@
 // todo 
-*make the bullet get out from the tip of the cannon (avoid some issues)
+*make a restart button (reset everything and start from all over again) 
 *make sensors + detection for sensors + define gaming over for network;
+*button to activate the network
 
 //viualization
 * build the visualization

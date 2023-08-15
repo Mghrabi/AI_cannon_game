@@ -10,9 +10,12 @@ class NinjaGenerator {
     }
 
     update(ctx) {
-        if(!gameOver){
-            this.generateNinja();
+        if(gameOver){
+            //logic for ui
+            this.clear(ctx);
+            return
         }
+        this.generateNinja();
         this.draw(ctx)
     }
 
@@ -38,13 +41,10 @@ class NinjaGenerator {
         this.idNumber+=1;
     }
 
-    draw(ctx) {
+    generateProcess(ctx){
         this.ninjas = this.ninjas.filter(n => {
             const ninjaDistance = (Math.abs(n.currentPosition.x)**2 + Math.abs(n.currentPosition.y)**2)**0.5
-            const exist = n.id in filteredNinjas;
-            console.log('filterNinja', filteredNinjas)
-            console.log('ninjas', this.ninjas);
-            console.log('exist inside the arr ', exist, 'id', n.id);
+            // const exist = n.id in filteredNinjas;
             if(filteredNinjas.includes(n.id)){
                 n.unDraw(ctx);
                 filteredNinjas.splice(filteredNinjas.indexOf(n.id),1)
@@ -59,6 +59,19 @@ class NinjaGenerator {
             n.update(ctx);
             return true;
         })
-        // console.log('this.Ninjas: ', this.ninjas);
     }
+
+    clear(ctx){
+        this.ninjas = this.ninjas.filter(n => {
+            n.unDraw(ctx);
+            return false;
+        })
+    }
+
+    draw(ctx) {
+        // console.log('this.Ninjas: ', this.ninjas);
+        return this.generateProcess(ctx);
+    }
+
+    
 }

@@ -6,6 +6,10 @@ class bulletGenerator {
     }
 
     update(ctx, ninjasArr){
+        if(gameOver){
+            this.clear(ctx);
+            return 
+        }
         this.ninjasArr = ninjasArr
         this.draw(ctx);
     }
@@ -16,20 +20,19 @@ class bulletGenerator {
         }
     }
 
-    draw(ctx){
-        //create a bullet shape
+    generateProcess(ctx){
         this.bullets = this.bullets.filter(b => {
 
             const hitNinja = this.ninjasArr.some((n) => {
                 const hit = detectCollision(n.topRightCornerPosition, b.currentPosition);
                 if(hit){
-                    console.log('after hit, id to add is ', n.id);
+                    //console.log('after hit, id to add is ', n.id);
                     filteredNinjas.push(n.id);
                 }
                 return hit;
             });
 
-            console.log('hitNinja')
+            //console.log('hitNinja')
 
             if(hitNinja){
                 b.unDraw(ctx);
@@ -45,10 +48,24 @@ class bulletGenerator {
             b.update(ctx);
             return true;
         })
+    }
+
+    draw(ctx){
+        this.generateProcess(ctx);
+        //create a bullet shape
         // console.log('this.bullets', this.bullets);
 
     }
 
+    //this will be called by cannon
+    clear(ctx){
+        this.bullets = this.bullets.filter(b => {
+            console.log('unDraw the bullet')
+            b.unDraw(ctx);
+            return false;
+        })
+        console.log('now this.bullets', this.bullets)
+    }
 
 
 }
