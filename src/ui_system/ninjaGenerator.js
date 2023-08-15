@@ -5,7 +5,7 @@ class NinjaGenerator {
         this.possibleAngles = [0, 45, 90, 135, 180, 225, 270, 315, 360];//all possible angles for ninja
         this.generateNow = true;
         //1500ms 
-        this.generationTime = 1500; //2 seconds
+        this.generationTime = 1700; //2 seconds
         this.idNumber = 0;
     }
 
@@ -21,6 +21,7 @@ class NinjaGenerator {
 
 
     generateNinja() {
+        // console.log('cannonCurrentAngle', cannonCurrentAngle);
         //pick random location;
         const chosenAngle1 = this.possibleAngles[Math.floor(Math.random() * this.possibleAngles.length)]
         const chosenAngle2 = this.possibleAngles[Math.floor(Math.random() * this.possibleAngles.length)]

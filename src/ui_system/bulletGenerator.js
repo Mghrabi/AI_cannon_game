@@ -60,11 +60,11 @@ class bulletGenerator {
     //this will be called by cannon
     clear(ctx){
         this.bullets = this.bullets.filter(b => {
-            console.log('unDraw the bullet')
+            // console.log('unDraw the bullet')
             b.unDraw(ctx);
             return false;
         })
-        console.log('now this.bullets', this.bullets)
+        // console.log('now this.bullets', this.bullets)
     }
 
 

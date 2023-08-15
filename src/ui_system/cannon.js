@@ -3,7 +3,7 @@ class Cannon {
         this.width = width;
         this.height = height;
         this.sensetivity = sensetivity;
-        this.angle = 0;
+        cannonCurrentAngle = 0;
         this.controls = new Controls()
         //cannon position: at the center of the canvas 
         this.position = { x: canvas.width / 2, y: canvas.height / 2 }
@@ -23,22 +23,23 @@ class Cannon {
 
     action() {
         if (this.controls.clockwise) {
-            this.angle = (this.angle + this.sensetivity) % 360;
+            cannonCurrentAngle = (cannonCurrentAngle + this.sensetivity) % 360;
         }
         if (this.controls.counterClockWise) {
-            this.angle = (this.angle - this.sensetivity) % 360;
+            cannonCurrentAngle = (cannonCurrentAngle - this.sensetivity) % 360;
         }
         if (this.controls.throwBullet && this.bulletFlag) {
             this.bulletFlag = false;
-            this.bulletGenerator.addBullet(this.position, this.angle);
+            this.bulletGenerator.addBullet(this.position, cannonCurrentAngle);
             setTimeout(() => {this.bulletFlag = true}, this.bulletTimeDelay)
         }
     }
 
     draw(ctx) {
 
+        this.controls.drawSensors(ctx)
         ctx.save();
-        console.log('gameScore', gameScore)
+        // console.log('gameScore', gameScore)
         //gameOver
        if(gameOver){
             //ui for gameover with respect to cannon
@@ -58,7 +59,7 @@ class Cannon {
 
         //allow rotation
         ctx.translate(canvas.width / 2, canvas.height / 2)
-        const angleValue = this.angle * 2 * Math.PI / 360
+        const angleValue = cannonCurrentAngle * 2 * Math.PI / 360
         ctx.rotate(angleValue);
         // ctx.translate(-canvas.width / 2, -canvas.height / 2)
 
@@ -72,7 +73,6 @@ class Cannon {
         //update bullets locaiton
         ctx.restore();
         this.bulletGenerator.update(ctx, this.ninjasArr);
-
     }
 
     clear(ctx){

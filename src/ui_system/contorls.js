@@ -4,11 +4,12 @@ class Controls {
         this.counterClockWise = false; 
         this.throwBullet = false;
         this.#keyBoardEventListeners();
+        this.sensorContainer = new SensorContainer(8);
     }
 
     #keyBoardEventListeners(){ 
        document.onkeydown = (event) => {
-            console.log('this is the key', event);
+            // console.log('this is the key', event);
             switch(event.key){
                 case 'ArrowRight':
                     this.clockwise = true
@@ -43,6 +44,9 @@ class Controls {
                     break; 
             }
        } 
+    }
 
+    drawSensors(ctx){
+        this.sensorContainer.draw(ctx);
     }
 }

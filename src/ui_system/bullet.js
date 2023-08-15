@@ -7,6 +7,7 @@ class Bullet {
         this.currentPosition = { x: this.radius* Math.sin(this.angleRadian) , y: this.radius * -Math.cos(this.angleRadian) };
         this.cannonWidth = cannonWidth
         this.bulletRadius = cannonWidth / 2 - 1;
+        this.speed = 10;
         // this.bulletRadius
     }
 
@@ -17,7 +18,7 @@ class Bullet {
     }
 
     move(){
-        this.radius+=8;
+        this.radius+=this.speed;
         this.currentPosition = { x: this.radius* Math.sin(this.angleRadian), y: this.radius * -Math.cos(this.angleRadian) };
     }
 

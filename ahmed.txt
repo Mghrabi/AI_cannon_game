@@ -1,5 +1,4 @@
 // todo 
-*make a restart button (reset everything and start from all over again) 
 *make sensors + detection for sensors + define gaming over for network;
 *button to activate the network
 
