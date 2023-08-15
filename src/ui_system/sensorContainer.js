@@ -7,10 +7,14 @@ class SensorContainer {
 
     
 
-    draw(ctx){
+    draw(ctx, ninjaDict){
+        // console.log('ninjaDict', ninjaDict)
         sensors.forEach(s => {
-            console.log('drawing sensors')
-            s.update(ctx);
+            // console.log('drawing sensors')
+            //here is the problem 
+            const minValue = Math.min(...(ninjaDict[s.anlge]?ninjaDict[s.anlge]:[0]))
+            console.log('minvalueeeeeeeeeeeeeeeeeeeeeeeeeeee',minValue)
+            s.update(ctx, );
         })
     }
 }

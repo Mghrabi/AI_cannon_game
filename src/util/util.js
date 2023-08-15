@@ -19,3 +19,16 @@ const detectCollision = (n_topCornerPosition, b_position) => {
     }
     return false;
 }
+
+
+const getNinjaAngleAndDistance = (ninjaArr) => {
+    const dict = {};
+    for (let n of ninjaArr){
+        if(dict[n.anlge]){
+            dict[n.anlge].push(n.distanceFromCenter);
+            continue
+        }
+        dict[n.angle] = [n.distanceFromCenter];
+    }
+    return dict;
+}

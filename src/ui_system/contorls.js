@@ -46,7 +46,8 @@ class Controls {
        } 
     }
 
-    drawSensors(ctx){
-        this.sensorContainer.draw(ctx);
+    drawSensors(ctx, ninjaArr){
+        // this.ninjaArr = ninjaArr;
+        this.sensorContainer.draw(ctx, getNinjaAngleAndDistance(ninjaArr));
     }
 }

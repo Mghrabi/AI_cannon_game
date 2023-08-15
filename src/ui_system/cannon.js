@@ -37,7 +37,7 @@ class Cannon {
 
     draw(ctx) {
 
-        this.controls.drawSensors(ctx)
+        this.controls.drawSensors(ctx, this.ninjasArr)
         ctx.save();
         // console.log('gameScore', gameScore)
         //gameOver
