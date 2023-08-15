@@ -18,6 +18,7 @@ let filteredNinjas = []; //ids of ninjas to filter
 //sensors needs to be global to be fed to network
 let sensors = [];
 let cannonCurrentAngle = 0;
+const sensorRadius = 300;
 
 
 

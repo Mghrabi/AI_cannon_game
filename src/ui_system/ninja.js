@@ -11,7 +11,7 @@ class Ninja{
         this.topRightCornerPosition = { x: this.radius* Math.sin(this.angleRadian) + this.imageSize/2, y: this.radius * -Math.cos(this.angleRadian) - this.imageSize/2 };
         this.image = document.getElementById('image')
         this.sensetivity = 10; //for rotation
-        this.speed = 1.5//for linear movement
+        this.speed = 1//for linear movement
         this.rotationAngle = 0 ;
         this.distanceFromCenter = canvas/2;
         //if Math.abs is less than the circle cannon radius then

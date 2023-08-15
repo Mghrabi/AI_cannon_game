@@ -24,8 +24,8 @@ const detectCollision = (n_topCornerPosition, b_position) => {
 const getNinjaAngleAndDistance = (ninjaArr) => {
     const dict = {};
     for (let n of ninjaArr){
-        if(dict[n.anlge]){
-            dict[n.anlge].push(n.distanceFromCenter);
+        if(dict[n.angle]){
+            dict[n.angle].push(n.distanceFromCenter);
             continue
         }
         dict[n.angle] = [n.distanceFromCenter];
