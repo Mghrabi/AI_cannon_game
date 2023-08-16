@@ -5,14 +5,11 @@ class SensorContainer {
         sensors = this.possibleAngles.map(s_angle=> new Sensor(s_angle));
     }
 
-    
-
     draw(ctx, ninjaDict){
-        console.log('ninjaDict', ninjaDict)
+        console.log('number of sensors', sensors.length);
         sensors.forEach(s => {
-
-            const minValue = Math.min(...(ninjaDict[s.angle]?ninjaDict[s.angle]:[-1]))
-            s.update(ctx, minValue);
+            const minReading = Math.min(...(ninjaDict[s.angle]?ninjaDict[s.angle]:[-1]))
+            s.update(ctx, minReading);
         })
     }
 }

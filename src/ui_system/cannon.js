@@ -12,10 +12,16 @@ class Cannon {
         this.bulletFlag = true 
         this.bulletTimeDelay = 100;
         this.ninjasArr = []
+
+        //define the network
+        this.network = new Network([8, 3]);
+        //this should be after computation
+        // this.layers_outputs = this.network.map(l => l.outputs)
     }
 
 
     update(ctx, ninjasArr) {
+        console.log('layers outputs', this.network_ouptut)
         this.ninjasArr = ninjasArr;
         this.action();
         this.draw(ctx);

@@ -14,7 +14,7 @@
 
 // network todo
 * build the network
-* 
+* cannon will end up throwing bullets till the ninja disappear (which means +1 then -1)
 
 //network issues
 *make the model make the decision of moving to right and then increase the angle according to that

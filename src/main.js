@@ -13,6 +13,10 @@ const sensetivity = 10;
 const robotGen = new NinjaGenerator()
 const cannon = new Cannon(cannonWidth, cannonHeight, sensetivity);
 const gameController = new GameController();
+// const a = [[1,3,5], [13,5,6]]
+// const b = [[2,3], [3,6]];
+// const c = math.multiply(a,b);
+// console.log('c', c);
 
 animate();
 function animate(){
