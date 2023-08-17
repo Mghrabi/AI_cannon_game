@@ -1,10 +1,11 @@
 class Controls {
-    constructor(){
+    constructor(c_score){
         this.clockwise = false;
         this.counterClockWise = false; 
         this.throwBullet = false;
         this.#keyBoardEventListeners();
         this.sensorContainer = new SensorContainer(8);
+        this.c_score = c_score
     }
 
     #keyBoardEventListeners(){ 
@@ -24,7 +25,8 @@ class Controls {
                 case 'r':
                     //
                     if(gameOver){
-                        gameScore = 0;
+                        // gameScore = 0;
+                        this.c_score.score = 0; 
                         gameOver = false;
                     }
                     break; 

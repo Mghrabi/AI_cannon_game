@@ -1,19 +1,25 @@
 class Network {
     constructor(arr_neurons){
-        this.Network = new Array(arr_neurons.length);
+        this.layers = new Array(arr_neurons.length);
         for (let i=0; i<arr_neurons.length; i++){
             //we won't create a layer for the inputs layer (sensors + cannon_angle)
             if(i==0){
                 //we manually defined the number of sensors we have so far + cannon_angle as input
-                this.Network.push(new Layer(arr_neurons[i], 8 + 1))
+                this.layers[i] = new Layer(arr_neurons[i], 8 + 1)
                 continue
             }
-            this.Network.push(new Layer(arr_neurons[i], arr_neurons[i-1]))
+            this.layers[i] = new Layer(arr_neurons[i], arr_neurons[i-1])
         }
     }
 
-    forward(){
+    forward(input){
         //compute layers and get the output
+        // console.log('this.layers', this.layers)
+        Layer.compute(input, this.layers[0]);
+        for (let i=1; i<this.layers.length; i++) {
+            Layer.compute(this.layers[i-1].outputs, this.layers[i]) 
+        }
+        return this.layers[this.layers.length - 1].outputs
     }
 
 }
@@ -48,7 +54,7 @@ class Layer {
         }
     }
 
-    static l_output(input, layer){
+    static compute(input, layer){
         for (let i=0; i<layer.n_features; i++){
             layer.inputs[i] = input[i];
         }
@@ -56,15 +62,17 @@ class Layer {
             let value = 0;
             for (let j=0; j<layer.n_features; j++){
                 value += layer.weights[i][j] * layer.inputs[j];
+                // console.log(typeof(value))
             }
-            value+=layer.biases;
+            value+=layer.biases[i];
+            // console.log('value', typeof(value))
             if(value>0){
                 layer.outputs[i] = 1;
             }else {
                 layer.outputs[i] = 0;
             }
         }
-        
+       return layer.outputs; 
         
         
     }

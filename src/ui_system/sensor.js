@@ -4,7 +4,7 @@ class Sensor{
         this.angleRadian = angle * Math.PI / 180;
         this.detected = false;
         this.reading = -1; //-1 means it detects nothing at the moment
-        this.radius = sensorRadius;
+        this.radius = 300;
     }
 
     update(ctx, reading){
@@ -12,7 +12,7 @@ class Sensor{
     }
 
     draw(ctx, reading){
-        this.reading = reading;
+        // this.reading = reading;
         ctx.save();
         ctx.translate(canvas.width / 2, canvas.height / 2);
         ctx.beginPath();
@@ -26,6 +26,7 @@ class Sensor{
         const lineLength = reading == -1?this.radius:reading;
         ctx.lineTo(lineLength* Math.sin(this.angleRadian), lineLength * -Math.cos(this.angleRadian))
         ctx.lineWidth = 2;
+        this.reading = reading;
         // ctx.setLineDash([20, 5])
         ctx.stroke();
         ctx.restore();

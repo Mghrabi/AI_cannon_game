@@ -10,6 +10,7 @@ class NinjaGenerator {
     }
 
     update(ctx) {
+        console.log('this.ninjas', this.ninjas)
         if(gameOver){
             //logic for ui
             this.clear(ctx);
@@ -46,9 +47,14 @@ class NinjaGenerator {
         this.ninjas = this.ninjas.filter(n => {
             const ninjaDistance = (Math.abs(n.currentPosition.x)**2 + Math.abs(n.currentPosition.y)**2)**0.5
             // const exist = n.id in filteredNinjas;
-            if(filteredNinjas.includes(n.id)){
+            // if(filteredNinjas.includes(n.id)){
+            //     n.unDraw(ctx);
+            //     filteredNinjas.splice(filteredNinjas.indexOf(n.id),1)
+            //     return false;
+            // }
+            if(n.remove){
                 n.unDraw(ctx);
-                filteredNinjas.splice(filteredNinjas.indexOf(n.id),1)
+                // filteredNinjas.splice(filteredNinjas.indexOf(n.id),1)
                 return false;
             }
             if((ninjaDistance < cannonRadius)){

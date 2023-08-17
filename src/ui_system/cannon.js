@@ -3,40 +3,57 @@ class Cannon {
         this.width = width;
         this.height = height;
         this.sensetivity = sensetivity;
-        cannonCurrentAngle = 0;
-        this.controls = new Controls()
-        //cannon position: at the center of the canvas 
+        this.cannonCurrentAngle = 0;
         this.position = { x: canvas.width / 2, y: canvas.height / 2 }
-        this.bulletGenerator = new bulletGenerator(width);
-        //to make sure to not throw many bullets with one click
         this.bulletFlag = true 
         this.bulletTimeDelay = 100;
-        this.ninjasArr = []
+        // this.ninjasArr = []
+        this.c_score = {score: 0};
 
-        //define the network
-        this.network = new Network([8, 3]);
-        //this should be after computation
-        // this.layers_outputs = this.network.map(l => l.outputs)
+        this.controls = new Controls()
+        this.bulletGenerator = new bulletGenerator(width);
+        this.cannon_net = new Network([8, 3]);
     }
 
 
     update(ctx, ninjasArr) {
-        console.log('layers outputs', this.network_ouptut)
         this.ninjasArr = ninjasArr;
-        this.action();
+        //sensors + currentCannonAngle
+        const input = [...(this.controls.sensorContainer.sensors.map(s => s.reading)), this.cannonCurrentAngle];
+        // console.log('input', input);
+        let out = this.cannon_net.forward(input);
+        // console.log(this.cannon_net.layers)
+        this.action('A', out);
+        // this.action('AI', out);
         this.draw(ctx);
     }
 
-    action() {
+    action(type=null, out=null) {
+        if(type=='AI'){
+            if (out[2]) {
+                this.cannonCurrentAngle = (this.cannonCurrentAngle + this.sensetivity) % 360;
+            }
+            if (out[0]) {
+                this.cannonCurrentAngle = (this.cannonCurrentAngle - this.sensetivity) % 360;
+            }
+            if (out[1]==0) {
+                this.bulletFlag = false;
+                this.bulletGenerator.addBullet(this.position, this.cannonCurrentAngle);
+                setTimeout(() => {this.bulletFlag = true}, this.bulletTimeDelay)
+            }
+            return
+        }
+
+        //otherwise
         if (this.controls.clockwise) {
-            cannonCurrentAngle = (cannonCurrentAngle + this.sensetivity) % 360;
+            this.cannonCurrentAngle = (this.cannonCurrentAngle + this.sensetivity) % 360;
         }
         if (this.controls.counterClockWise) {
-            cannonCurrentAngle = (cannonCurrentAngle - this.sensetivity) % 360;
+            this.cannonCurrentAngle = (this.cannonCurrentAngle - this.sensetivity) % 360;
         }
         if (this.controls.throwBullet && this.bulletFlag) {
             this.bulletFlag = false;
-            this.bulletGenerator.addBullet(this.position, cannonCurrentAngle);
+            this.bulletGenerator.addBullet(this.position, this.cannonCurrentAngle);
             setTimeout(() => {this.bulletFlag = true}, this.bulletTimeDelay)
         }
     }
@@ -65,7 +82,7 @@ class Cannon {
 
         //allow rotation
         ctx.translate(canvas.width / 2, canvas.height / 2)
-        const angleValue = cannonCurrentAngle * 2 * Math.PI / 360
+        const angleValue = this.cannonCurrentAngle * 2 * Math.PI / 360
         ctx.rotate(angleValue);
         // ctx.translate(-canvas.width / 2, -canvas.height / 2)
 
@@ -78,7 +95,7 @@ class Cannon {
 
         //update bullets locaiton
         ctx.restore();
-        this.bulletGenerator.update(ctx, this.ninjasArr);
+        this.bulletGenerator.update(ctx, this.ninjasArr, this.c_score);
     }
 
     clear(ctx){
@@ -87,7 +104,8 @@ class Cannon {
         ctx.fill();
         ctx.font = "48px serif";
         ctx.fillStyle = "white";
-        ctx.fillText("YOUR SCORE: "+ gameScore, canvas.width/2 - 140, canvas.height/2);
+        // ctx.fillText("YOUR SCORE: "+ gameScore, canvas.width/2 - 140, canvas.height/2);
+        ctx.fillText("YOUR SCORE: "+ this.c_score.score, canvas.width/2 - 140, canvas.height/2);
         this.bulletGenerator.clear(ctx);
     }
 

@@ -1,4 +1,4 @@
-let gameScore = 0;
+// let gameScore = 0;
 let gameOver = false;
 //cannon shape
 let cannonWidth = 20;
@@ -14,11 +14,6 @@ let imageSize = 75;
 let filteredNinjas = []; //ids of ninjas to filter
 
 
-// for network:
-//sensors needs to be global to be fed to network
-let sensors = [];
-let cannonCurrentAngle = 0;
-const sensorRadius = 300;
 
 
 
