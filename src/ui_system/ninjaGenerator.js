@@ -1,23 +1,29 @@
 class NinjaGenerator {
-    constructor() {
+    constructor(c_state) {
         this.randomAngle = 100
         this.ninjas = [];
         this.possibleAngles = [0, 45, 90, 135, 180, 225, 270, 315, 360];//all possible angles for ninja
         this.generateNow = true;
+        this.c_state = c_state;
         //1500ms 
-        this.generationTime = 6000; //2 seconds
+        this.generationTime = 1700; //2 seconds
         this.idNumber = 0;
     }
 
     update(ctx) {
-        if(!gameOver){
-            this.generateNinja();
+        console.log('this.ninjas', this.ninjas)
+        if(this.c_state.gameOver){
+            //logic for ui
+            this.clear(ctx);
+            return
         }
+        this.generateNinja();
         this.draw(ctx)
     }
 
 
     generateNinja() {
+        // console.log('cannonCurrentAngle', cannonCurrentAngle);
         //pick random location;
         const chosenAngle1 = this.possibleAngles[Math.floor(Math.random() * this.possibleAngles.length)]
         const chosenAngle2 = this.possibleAngles[Math.floor(Math.random() * this.possibleAngles.length)]
@@ -26,7 +32,7 @@ class NinjaGenerator {
             this.generateNow = false;
             setTimeout(() => {
                 this.addNinja(chosenAngle1);
-                // this.addNinja(chosenAngle2);
+                this.addNinja(chosenAngle2);
                 this.generateNow = true;
             }, this.generationTime);
         }
@@ -38,27 +44,35 @@ class NinjaGenerator {
         this.idNumber+=1;
     }
 
-    draw(ctx) {
+    generateProcess(ctx){
         this.ninjas = this.ninjas.filter(n => {
             const ninjaDistance = (Math.abs(n.currentPosition.x)**2 + Math.abs(n.currentPosition.y)**2)**0.5
-            const exist = n.id in filteredNinjas;
-            console.log('filterNinja', filteredNinjas)
-            console.log('ninjas', this.ninjas);
-            console.log('exist inside the arr ', exist, 'id', n.id);
-            if(filteredNinjas.includes(n.id)){
+            if(n.remove){
                 n.unDraw(ctx);
-                filteredNinjas.splice(filteredNinjas.indexOf(n.id),1)
                 return false;
             }
             if((ninjaDistance < cannonRadius)){
                 // make gameover 
-                // gameOver = true;
+                this.c_state.gameOver = true;
                 n.unDraw(ctx);
                 return false
             }
             n.update(ctx);
             return true;
         })
-        // console.log('this.Ninjas: ', this.ninjas);
     }
+
+    clear(ctx){
+        this.ninjas = this.ninjas.filter(n => {
+            n.unDraw(ctx);
+            return false;
+        })
+    }
+
+    draw(ctx) {
+        // console.log('this.Ninjas: ', this.ninjas);
+        return this.generateProcess(ctx);
+    }
+
+    
 }

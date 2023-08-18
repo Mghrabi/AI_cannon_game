@@ -1,11 +1,12 @@
-// todo 
-* add collicion detection + condition for ninjas to diappear
-* removing from the list as for bullets
-* game condition and score increase;
-* game over and stop the game; (make a message with gameover)
-
+// todo
+*isolate the sensors for each cannon
+*make sensors + detection for sensors + define gaming over for network;
+*button to activate the network
+*each cannon should have it own generator and its own sensors
 
 //viualization
+* build the visualization
+* build the network itself
 
 //  
 * add sensors ()
@@ -15,12 +16,13 @@
 
 // network todo
 * build the network
-* 
+* cannon will end up throwing bullets till the ninja disappear (which means +1 then -1)
 
 //network issues
 *make the model make the decision of moving to right and then increase the angle according to that
 *you need the model to be able to know the tip of the cannon;
-*
+
+I should give the network a sign that hitting a ninja is five times better than missing a bullet
 
 
 

@@ -14,11 +14,21 @@ const detectCollision = (n_topCornerPosition, b_position) => {
 
     const x = n_x - b_x;
     const y = b_y - n_y;
-    console.log('loooooooooooooooooooooooooooog', x, y)
-    if (x>0 && y>0 && (x <= imageSize) && (y<=imageSize)) {
-        console.log('yes')
+    if (x>0 && y>0 && (x <= imageSize - 10) && (y<=imageSize - 10)) {
         return true 
     }
-    console.log('no')
     return false;
+}
+
+
+const getNinjaAngleAndDistance = (ninjaArr) => {
+    const dict = {};
+    for (let n of ninjaArr){
+        if(dict[n.angle]){
+            dict[n.angle].push(n.distanceFromCenter);
+            continue
+        }
+        dict[n.angle] = [n.distanceFromCenter];
+    }
+    return dict;
 }

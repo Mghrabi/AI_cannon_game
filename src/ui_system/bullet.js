@@ -3,21 +3,22 @@ class Bullet {
         this.startPosition = startPosition;
         // this.currentPosition = startPosition;
         this.angleRadian = angle * Math.PI / 180;
-        this.radius = 0
-        this.currentPosition = { x: this.radius* Math.sin(this.angleRadian), y: this.radius * -Math.cos(this.angleRadian) };
+        this.radius = cannonHeight - 20;
+        this.currentPosition = { x: this.radius* Math.sin(this.angleRadian) , y: this.radius * -Math.cos(this.angleRadian) };
         this.cannonWidth = cannonWidth
         this.bulletRadius = cannonWidth / 2 - 1;
+        this.speed = 10;
         // this.bulletRadius
     }
 
     update(ctx){
-        console.log('bullet current position', this.currentPosition)
+        //console.log('bullet current position', this.currentPosition)
         this.move();
         this.draw(ctx)
     }
 
     move(){
-        this.radius+=8;
+        this.radius+=this.speed;
         this.currentPosition = { x: this.radius* Math.sin(this.angleRadian), y: this.radius * -Math.cos(this.angleRadian) };
     }
 

@@ -1,6 +1,7 @@
 //ninja weapon (I called it Ninja)
 class Ninja{
     constructor(angle, id){
+        this.angle = angle;
         this.imageSize = imageSize;
         this.id = id;
         this.angleRadian = angle * Math.PI / 180;
@@ -10,8 +11,9 @@ class Ninja{
         this.topRightCornerPosition = { x: this.radius* Math.sin(this.angleRadian) + this.imageSize/2, y: this.radius * -Math.cos(this.angleRadian) - this.imageSize/2 };
         this.image = document.getElementById('image')
         this.sensetivity = 10; //for rotation
-        this.speed = 1.5//for linear movement
+        this.speed = 1//for linear movement
         this.rotationAngle = 0 ;
+        this.distanceFromCenter = canvas/2;
         //if Math.abs is less than the circle cannon radius then
         //you die
     }
@@ -24,6 +26,7 @@ class Ninja{
     move(){
         this.radius-=this.speed;
         this.currentPosition = { x: this.radius* Math.sin(this.angleRadian), y: this.radius * -Math.cos(this.angleRadian) };
+        this.distanceFromCenter = (this.currentPosition.x**2 + this.currentPosition.y**2)**0.5
         this.topRightCornerPosition = { x: this.radius* Math.sin(this.angleRadian) + this.imageSize/2, y: this.radius * -Math.cos(this.angleRadian) - this.imageSize/2 };
         this.rotationAngle = (this.rotationAngle + this.sensetivity) % 360;
     }
@@ -49,6 +52,9 @@ class Ninja{
         ctx.translate(this.currentPosition.x , this.currentPosition.y);
         ctx.drawImage(this.image,  this.currentPosition.x, this.currentPosition.y, 0, 0)
         ctx.fill();
+        // ctx.font = "48px serif";
+        // ctx.fillStyle = "green";
+        // ctx.fillText("+1", this.currentPosition.x, this.currentPosition.y);
         ctx.restore();
     }
 
