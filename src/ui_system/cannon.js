@@ -1,5 +1,6 @@
 class Cannon {
-    constructor(width, height, sensetivity = 10) {
+    constructor(width, height, cannonType, sensetivity = 10) {
+        this.cannonType = cannonType 
         this.width = width;
         this.height = height;
         this.sensetivity = sensetivity;
@@ -7,23 +8,24 @@ class Cannon {
         this.position = { x: canvas.width / 2, y: canvas.height / 2 }
         this.bulletFlag = true 
         this.bulletTimeDelay = 100;
-        // this.ninjasArr = []
-        this.c_score = {score: 0};
+        this.c_state = {score: 0, gameOver: false};
 
-        this.controls = new Controls()
-        this.bulletGenerator = new bulletGenerator(width);
+        
+        this.ninjaGenerator = new NinjaGenerator(this.c_state);
+        this.controls = new Controls(this.c_state)
+        this.bulletGenerator = new bulletGenerator(width, this.c_state);
         this.cannon_net = new Network([8, 3]);
     }
 
 
-    update(ctx, ninjasArr) {
-        this.ninjasArr = ninjasArr;
+    update(ctx) {
+        this.ninjaGenerator.ninjas = this.ninjaGenerator.ninjas;
         //sensors + currentCannonAngle
         const input = [...(this.controls.sensorContainer.sensors.map(s => s.reading)), this.cannonCurrentAngle];
         // console.log('input', input);
         let out = this.cannon_net.forward(input);
         // console.log(this.cannon_net.layers)
-        this.action('A', out);
+        this.action(this.cannonType, out);
         // this.action('AI', out);
         this.draw(ctx);
     }
@@ -60,13 +62,13 @@ class Cannon {
 
     draw(ctx) {
 
-        this.controls.drawSensors(ctx, this.ninjasArr)
+        this.controls.drawSensors(ctx, this.ninjaGenerator.ninjas)
         ctx.save();
         // console.log('gameScore', gameScore)
         //gameOver
-       if(gameOver){
+       if(this.c_state.gameOver){
             //ui for gameover with respect to cannon
-            this.clear(ctx);
+            // this.clear(ctx);
             return 
         }
 
@@ -95,7 +97,8 @@ class Cannon {
 
         //update bullets locaiton
         ctx.restore();
-        this.bulletGenerator.update(ctx, this.ninjasArr, this.c_score);
+        this.bulletGenerator.update(ctx, this.ninjaGenerator.ninjas, this.c_state);
+        this.ninjaGenerator.update(ctx);
     }
 
     clear(ctx){
@@ -105,7 +108,7 @@ class Cannon {
         ctx.font = "48px serif";
         ctx.fillStyle = "white";
         // ctx.fillText("YOUR SCORE: "+ gameScore, canvas.width/2 - 140, canvas.height/2);
-        ctx.fillText("YOUR SCORE: "+ this.c_score.score, canvas.width/2 - 140, canvas.height/2);
+        ctx.fillText("YOUR SCORE: "+ this.c_state.score, canvas.width/2 - 140, canvas.height/2);
         this.bulletGenerator.clear(ctx);
     }
 

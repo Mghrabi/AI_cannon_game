@@ -1,9 +1,10 @@
 class NinjaGenerator {
-    constructor() {
+    constructor(c_state) {
         this.randomAngle = 100
         this.ninjas = [];
         this.possibleAngles = [0, 45, 90, 135, 180, 225, 270, 315, 360];//all possible angles for ninja
         this.generateNow = true;
+        this.c_state = c_state;
         //1500ms 
         this.generationTime = 1700; //2 seconds
         this.idNumber = 0;
@@ -11,7 +12,7 @@ class NinjaGenerator {
 
     update(ctx) {
         console.log('this.ninjas', this.ninjas)
-        if(gameOver){
+        if(this.c_state.gameOver){
             //logic for ui
             this.clear(ctx);
             return
@@ -46,20 +47,13 @@ class NinjaGenerator {
     generateProcess(ctx){
         this.ninjas = this.ninjas.filter(n => {
             const ninjaDistance = (Math.abs(n.currentPosition.x)**2 + Math.abs(n.currentPosition.y)**2)**0.5
-            // const exist = n.id in filteredNinjas;
-            // if(filteredNinjas.includes(n.id)){
-            //     n.unDraw(ctx);
-            //     filteredNinjas.splice(filteredNinjas.indexOf(n.id),1)
-            //     return false;
-            // }
             if(n.remove){
                 n.unDraw(ctx);
-                // filteredNinjas.splice(filteredNinjas.indexOf(n.id),1)
                 return false;
             }
             if((ninjaDistance < cannonRadius)){
                 // make gameover 
-                gameOver = true;
+                this.c_state.gameOver = true;
                 n.unDraw(ctx);
                 return false
             }

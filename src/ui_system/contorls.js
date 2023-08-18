@@ -1,11 +1,11 @@
 class Controls {
-    constructor(c_score){
+    constructor(c_state){
         this.clockwise = false;
         this.counterClockWise = false; 
         this.throwBullet = false;
         this.#keyBoardEventListeners();
         this.sensorContainer = new SensorContainer(8);
-        this.c_score = c_score
+        this.c_state = c_state
     }
 
     #keyBoardEventListeners(){ 
@@ -24,10 +24,10 @@ class Controls {
                 //for simplicity I put this here (for reseting the game)
                 case 'r':
                     //
-                    if(gameOver){
+                    if(this.c_state.gameOver){
                         // gameScore = 0;
-                        this.c_score.score = 0; 
-                        gameOver = false;
+                        this.c_state.score = 0; 
+                        this.c_state.gameOver = false;
                     }
                     break; 
             }

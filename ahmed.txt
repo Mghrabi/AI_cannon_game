@@ -1,4 +1,5 @@
 // todo
+*isolate the sensors for each cannon
 *make sensors + detection for sensors + define gaming over for network;
 *button to activate the network
 *each cannon should have it own generator and its own sensors
