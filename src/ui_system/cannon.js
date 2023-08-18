@@ -22,6 +22,7 @@ class Cannon {
         this.ninjaGenerator.ninjas = this.ninjaGenerator.ninjas;
         //sensors + currentCannonAngle
         const input = [...(this.controls.sensorContainer.sensors.map(s => s.reading)), this.cannonCurrentAngle];
+        console.log('this.cannon_net', this.cannon_net)
         // console.log('input', input);
         let out = this.cannon_net.forward(input);
         // console.log(this.cannon_net.layers)
@@ -38,7 +39,7 @@ class Cannon {
             if (out[0]) {
                 this.cannonCurrentAngle = (this.cannonCurrentAngle - this.sensetivity) % 360;
             }
-            if (out[1]==0) {
+            if (out[1]==0 && this.bulletFlag){
                 this.bulletFlag = false;
                 this.bulletGenerator.addBullet(this.position, this.cannonCurrentAngle);
                 setTimeout(() => {this.bulletFlag = true}, this.bulletTimeDelay)

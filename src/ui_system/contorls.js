@@ -4,8 +4,9 @@ class Controls {
         this.counterClockWise = false; 
         this.throwBullet = false;
         this.#keyBoardEventListeners();
-        this.sensorContainer = new SensorContainer(8);
         this.c_state = c_state
+
+        this.sensorContainer = new SensorContainer(8, this.c_state);
     }
 
     #keyBoardEventListeners(){ 

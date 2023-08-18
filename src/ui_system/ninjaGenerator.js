@@ -11,7 +11,7 @@ class NinjaGenerator {
     }
 
     update(ctx) {
-        console.log('this.ninjas', this.ninjas)
+        // console.log('this.ninjas', this.ninjas)
         if(this.c_state.gameOver){
             //logic for ui
             this.clear(ctx);

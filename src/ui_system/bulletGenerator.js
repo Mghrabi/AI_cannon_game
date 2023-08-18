@@ -37,7 +37,7 @@ class bulletGenerator {
                 // this.ninjasArr.push(2);
                 b.unDraw(ctx);
                 // gameScore+=1;
-                this.c_state.score +=1;
+                this.c_state.score +=5;
                 return false;
             }                  
 

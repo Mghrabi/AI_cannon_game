@@ -1,5 +1,6 @@
 // todo
-*isolate the sensors for each cannon
+*local storage issue (it saves it as layers only not as a an instance of a class)
+*make the input layer from the layers
 *make sensors + detection for sensors + define gaming over for network;
 *button to activate the network
 *each cannon should have it own generator and its own sensors
