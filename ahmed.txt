@@ -1,4 +1,6 @@
 // todo
+*we need to automatically iterate the process + make sure it is correct in the first place
++ mutation + add a condition the one that lives longer gets score of 5 every 4 seconds
 *local storage issue (it saves it as layers only not as a an instance of a class)
 *make the input layer from the layers
 *make sensors + detection for sensors + define gaming over for network;

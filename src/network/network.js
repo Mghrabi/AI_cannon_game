@@ -1,6 +1,7 @@
 class Network {
     constructor(arr_neurons){
         this.layers = new Array(arr_neurons.length);
+        // console.log('this is what a layers are ', this.layers);
         for (let i=0; i<arr_neurons.length; i++){
             //we won't create a layer for the inputs layer (sensors + cannon_angle)
             if(i==0){

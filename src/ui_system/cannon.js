@@ -1,5 +1,6 @@
 class Cannon {
-    constructor(width, height, cannonType, sensetivity = 10) {
+    constructor(width, height, cannonType, sensetivity = 10, id=null) {
+        this.id = id;
         this.cannonType = cannonType 
         this.width = width;
         this.height = height;
@@ -19,10 +20,13 @@ class Cannon {
 
 
     update(ctx) {
+        if(this.c_state.score < -20){
+            this.c_state.gameOver = true;
+        }
         this.ninjaGenerator.ninjas = this.ninjaGenerator.ninjas;
         //sensors + currentCannonAngle
         const input = [...(this.controls.sensorContainer.sensors.map(s => s.reading)), this.cannonCurrentAngle];
-        console.log('this.cannon_net', this.cannon_net)
+        // console.log('this.cannon_net', this.cannon_net)
         // console.log('input', input);
         let out = this.cannon_net.forward(input);
         // console.log(this.cannon_net.layers)
