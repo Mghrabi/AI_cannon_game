@@ -8,6 +8,7 @@ class NinjaGenerator {
         //1500ms 
         this.generationTime = 1700; //2 seconds
         this.idNumber = 0;
+        this.ninjaCount = 0;
     }
 
     update(ctx) {
@@ -32,8 +33,8 @@ class NinjaGenerator {
         if (this.generateNow) {
             this.generateNow = false;
             setTimeout(() => {
-                this.addNinja(0);
-                this.addNinja(135);
+                this.addNinja(generationSequence[this.ninjaCount]);
+                this.addNinja(generationSequence[this.ninjaCount]);
                 // this.addNinja(chosenAngle3);
                 this.generateNow = true;
             }, this.generationTime);
@@ -44,6 +45,7 @@ class NinjaGenerator {
         //for now 
         this.ninjas.push(new Ninja(randomAngle, this.idNumber))
         this.idNumber+=1;
+        this.ninjaCount+=1;
     }
 
     generateProcess(ctx){

@@ -23,7 +23,7 @@ class Sensor{
         if(reading == -1 || !reading){
             ctx.strokeStyle= 'gray';
         }else {
-            ctx.strokeStyle= 'yellow';
+            // ctx.strokeStyle= 'yellow';
         }
         const lineLength = reading == -1?this.radius:reading;
         ctx.lineTo(lineLength* Math.sin(this.angleRadian), lineLength * -Math.cos(this.angleRadian))

@@ -2,6 +2,7 @@
 conclusions: 
 *models start differently (means weights have effect with inputs)
 *I should be forcing the ninjas generation to be in a particular sequence 
+*what I started to notice that the model is gettting to the same state which is great
 
 
 
