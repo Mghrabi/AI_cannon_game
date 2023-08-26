@@ -10,7 +10,7 @@ class Cannon {
         this.bulletFlag = true 
         this.bulletTimeDelay = 100;
         this.c_state = {score: 0, gameOver: false};
-
+        this.countTime = false;
         
         this.ninjaGenerator = new NinjaGenerator(this.c_state);
         this.controls = new Controls(this.c_state)
@@ -18,6 +18,17 @@ class Cannon {
         this.cannon_net = new Network([8, 3]);
     }
 
+    increaseScoreBasedOnTime(){
+        if(!this.countTime){
+            this.countTime = true;
+            setTimeout(() => {
+                if(!this.c_state.gameOver){
+                    this.c_state.score+=5; 
+                }
+                this.countTime = false;
+            }, 5000);
+        }
+    }
 
     update(ctx) {
         if(this.c_state.score < -20){
@@ -28,12 +39,13 @@ class Cannon {
         const input = [...(this.controls.sensorContainer.sensors.map(s => s.reading)), this.cannonCurrentAngle];
         // console.log('this.cannon_net', this.cannon_net)
         // console.log('input', input);
-        let out = this.cannon_net.forward(input);
+        let out = this.cannon_net.forward(input.map(i => i));
         // console.log(this.cannon_net.layers)
         this.action(this.cannonType, out);
         // this.action('AI', out);
         this.draw(ctx);
     }
+
 
     action(type=null, out=null) {
         if(type=='AI'){
@@ -77,6 +89,8 @@ class Cannon {
             return 
         }
 
+        this.increaseScoreBasedOnTime();
+
         const gradient = ctx.createRadialGradient(canvas.width / 2, canvas.height / 2, 3, canvas.width / 2, canvas.height / 2, 40);
         gradient.addColorStop(0, "gray"); // Start color at the center
         gradient.addColorStop(1, "black"); // End color at the outer edge
@@ -116,5 +130,6 @@ class Cannon {
         ctx.fillText("YOUR SCORE: "+ this.c_state.score, canvas.width/2 - 140, canvas.height/2);
         this.bulletGenerator.clear(ctx);
     }
+
 
 }

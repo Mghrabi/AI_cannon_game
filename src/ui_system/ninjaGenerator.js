@@ -27,12 +27,14 @@ class NinjaGenerator {
         //pick random location;
         const chosenAngle1 = this.possibleAngles[Math.floor(Math.random() * this.possibleAngles.length)]
         const chosenAngle2 = this.possibleAngles[Math.floor(Math.random() * this.possibleAngles.length)]
+        const chosenAngle3 = this.possibleAngles[Math.floor(Math.random() * this.possibleAngles.length)]
         //generate every 1 seconds
         if (this.generateNow) {
             this.generateNow = false;
             setTimeout(() => {
-                this.addNinja(chosenAngle1);
-                this.addNinja(chosenAngle2);
+                this.addNinja(0);
+                this.addNinja(135);
+                // this.addNinja(chosenAngle3);
                 this.generateNow = true;
             }, this.generationTime);
         }

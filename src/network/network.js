@@ -23,6 +23,28 @@ class Network {
         return this.layers[this.layers.length - 1].outputs
     }
 
+    static mutate(network,percentage=1){
+        network.layers.forEach(layer => {
+            for(let i=0;i<layer.weights.length;i++){
+                for(let j=0;j<layer.weights[i].length;j++){
+                    // console.log('here is before', layer.weights[i][j])
+                    layer.weights[i][j]=lerp(
+                        layer.weights[i][j],
+                        Math.random()*2-1,
+                       percentage 
+                    )
+                    // console.log('here is after', layer.weights[i][j])
+                }
+
+                layer.biases[i]=lerp(
+                    layer.biases[i],
+                    Math.random()*2-1,
+                    percentage 
+                )
+            }
+        });
+    }
+
 }
 
 class Layer {

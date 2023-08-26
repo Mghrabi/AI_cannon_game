@@ -1,4 +1,17 @@
-// todo
+// todo (initialization doesn't change how cannon reacts to ninjas)
+conclusions: 
+*models start differently (means weights have effect with inputs)
+*I should be forcing the ninjas generation to be in a particular sequence 
+
+
+
+
+*note: look at how layers are not stored + i checked the layers and they are different
+but something is not normal
+*note: mutation didn't result into any noticable change + train all cannons with the same 
+conditions over and over again (also make sure it's learning something, should
+you repeat the same ninjas pattern?, this would be for you to make sure you didn't lose the first path);
+
 *we need to automatically iterate the process + make sure it is correct in the first place
 + mutation + add a condition the one that lives longer gets score of 5 every 4 seconds
 *local storage issue (it saves it as layers only not as a an instance of a class)
@@ -39,3 +52,9 @@ I should give the network a sign that hitting a ninja is five times better than 
 //knowledge
 * beginPath is when you want to draw like lineTo moveTo arc
 * save() and restore() when you want to isolate some drawings environment
+
+
+
+
+//network knowledge:
+* It's very difficult to notice how networks behave in random

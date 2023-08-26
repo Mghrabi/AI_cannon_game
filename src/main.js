@@ -6,22 +6,41 @@ setupCanvas(background_image);
 setupCanvas(canvas)
 setupCanvas(network_canvas)
 let bestCannon;
-ctx = canvas.getContext('2d')
+const ctx = canvas.getContext('2d')
+const network_ctx = network_canvas.getContext('2d');
 const sensetivity = 10;
 const cannons = [];
 
 // const game_score = 0;
-cannons[0] = new Cannon(cannonWidth, cannonHeight, 'AI', sensetivity, id=0);
-console.log('cannon_net form the b', cannons[0].cannon_net);
-// localStorage.removeItem('best_network')
-if (localStorage.getItem('best_network_layers')) {
-    // console.log('this is here ', JSON.parse(localStorage.getItem('best_network_layers')))
-    cannons[0].cannon_net.layers = JSON.parse(localStorage.getItem('best_network_layers'));
+
+// console.log('cannon_net form the b', cannons[0].cannon_net);
+cannons[0] = new Cannon(cannonWidth, cannonHeight, 'AI', sensetivity, id = 0);
+const smartNetworkLayersExist = JSON.parse(localStorage.getItem('best_network_layers'));
+console.log('smartNetworkLayersExist', smartNetworkLayersExist);
+if (smartNetworkLayersExist) {
+    cannons[0].cannon_net.layers = smartNetworkLayersExist;
 }
 
 const generateCannons = (num) => {
-    for (let i = 1; i < num; i++) {
-        cannons.push(new Cannon(cannonWidth, cannonHeight, 'AI', sensetivity, id=i));
+    if (smartNetworkLayersExist) {
+        for (let i = 1; i < num; i++) {
+            const newCannon = new Cannon(cannonWidth, cannonHeight, 'AI', sensetivity, id = i);
+            console.log('newCannon layer before', newCannon.cannon_net.layers)
+            newCannon.cannon_net.layers = JSON.parse(localStorage.getItem('best_network_layers'));
+            // console.log('layers in newCannon', newCannon.cannon_net.layers);
+            //this line is producing an error (it makes model), it affects the best_cannon model as well
+            //which means that the smartNetworkLayers is passed as a reference, all cannons share the same network
+            Network.mutate(newCannon.cannon_net, 0.5);
+            console.log('newCannon layers after', newCannon.cannon_net.layers);
+            console.log('cannons length', cannons.length);
+            console.log('---------------------------------------------')
+            cannons.push(newCannon);
+        }
+    }
+    else {
+        for (let i = 1; i < num; i++) {
+            cannons.push(new Cannon(cannonWidth, cannonHeight, 'AI', sensetivity, id = i));
+        }
     }
 }
 generateCannons(9);
@@ -57,9 +76,10 @@ function animate() {
         // console.log('cannnons', cannons)
         cannons[i].update(ctx);
     }
+    console.log('lived cannons', cannons.filter(i => i.c_state.gameOver == false))
     bestCannon = cannons.find(c => c.c_state.score == Math.max(...cannons.map(c => c.c_state.score)))
     gameController.update(ctx, bestCannon.c_state);
-    console.log('best_cannon', bestCannon);
+    // console.log('best_cannon', bestCannon.cannon_net.layers[0].outputs);
     window.requestAnimationFrame(animate)
 }
 

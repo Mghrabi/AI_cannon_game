@@ -31,3 +31,8 @@ const getNinjaAngleAndDistance = (ninjaArr) => {
     }
     return dict;
 }
+
+const lerp = (A,B,t) => {
+    return A+(B-A)*t;
+}
+
