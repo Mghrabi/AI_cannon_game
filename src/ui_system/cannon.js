@@ -23,7 +23,7 @@ class Cannon {
             this.countTime = true;
             setTimeout(() => {
                 if(!this.c_state.gameOver){
-                    this.c_state.score+=5; 
+                    this.c_state.score+=LIVING_POINTS; 
                 }
                 this.countTime = false;
             }, 5000);

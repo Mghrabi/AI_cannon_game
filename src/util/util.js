@@ -1,4 +1,3 @@
-
 const setupCanvas = (can) => {
     can.height = window.innerHeight;
     can.width = window.innerWidth / 2;

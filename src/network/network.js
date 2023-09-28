@@ -48,12 +48,15 @@ class Network {
 }
 
 class Layer {
-    constructor(n_neurons, n_previous) {
+    constructor(n_neurons, n_previous, inputLayer=false) {
         //n_0 is number of neurons of layer 0 
         //previous = n_0 * m_examples (m_examples will be of 1 in game training)
         //this layer =>  weights_of_this_layer = n_1 * n_0
         //then we can apply mutrix multiplication between this l_1 * l_0_ouput 
-
+        this.inputLayer = inputLayer;
+        if(inputLayer){
+            this.n_neurons = n_neurons;
+        } 
         this.n_neurons = n_neurons;
         this.n_features = n_previous;
 
@@ -96,7 +99,6 @@ class Layer {
             }
         }
        return layer.outputs; 
-        
         
     }
 

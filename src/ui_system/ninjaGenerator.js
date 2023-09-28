@@ -35,6 +35,10 @@ class NinjaGenerator {
             setTimeout(() => {
                 this.addNinja(generationSequence[this.ninjaCount]);
                 this.addNinja(generationSequence[this.ninjaCount]);
+                this.addNinja(generationSequence[this.ninjaCount]);
+                this.addNinja(generationSequence[this.ninjaCount]);
+                // this.addNinja(chosenAngle1);
+                // this.addNinja(chosenAngle2);
                 // this.addNinja(chosenAngle3);
                 this.generateNow = true;
             }, this.generationTime);
