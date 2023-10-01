@@ -5,16 +5,13 @@ class NinjaGenerator {
         this.possibleAngles = [0, 45, 90, 135, 180, 225, 270, 315, 360];//all possible angles for ninja
         this.generateNow = true;
         this.c_state = c_state;
-        //1500ms 
         this.generationTime = 6000; //2 seconds (used to be 1700)
         this.idNumber = 0;
         this.ninjaCount = 0;
     }
 
     update(ctx) {
-        // console.log('this.ninjas', this.ninjas)
         if(this.c_state.gameOver){
-            //logic for ui
             this.clear(ctx);
             return
         }
@@ -24,29 +21,30 @@ class NinjaGenerator {
 
 
     generateNinja() {
-        // console.log('cannonCurrentAngle', cannonCurrentAngle);
-        //pick random location;
+        //pick 3 random locations;
         const chosenAngle1 = this.possibleAngles[Math.floor(Math.random() * this.possibleAngles.length)]
         const chosenAngle2 = this.possibleAngles[Math.floor(Math.random() * this.possibleAngles.length)]
         const chosenAngle3 = this.possibleAngles[Math.floor(Math.random() * this.possibleAngles.length)]
-        //generate every 1 seconds
+        //generate every this.generationTime 
         if (this.generateNow) {
             this.generateNow = false;
             setTimeout(() => {
-                // this.addNinja(generationSequence[this.ninjaCount]);
-                // this.addNinja(generationSequence[this.ninjaCount]);
-                // this.addNinja(generationSequence[this.ninjaCount]);
-                // this.addNinja(generationSequence[this.ninjaCount]);
+
+                //random ninja location
                 this.addNinja(chosenAngle1);
-                // this.addNinja(chosenAngle2);
-                // this.addNinja(chosenAngle3);
+
+                // generate ninja following the sequence exist in generationSequence array
+                // this used in training to assure each cannon has running through the same 
+                // conditions, therefore they can be compared to each other, also makes training easier
+                // this.addNinja(generationSequence[this.ninjaCount]);
+                
+                //Only now you can generate restart generation
                 this.generateNow = true;
             }, this.generationTime);
         }
     }
 
     addNinja(randomAngle) {
-        //for now 
         this.ninjas.push(new Ninja(randomAngle, this.idNumber))
         this.idNumber+=1;
         this.ninjaCount+=1;
@@ -60,7 +58,7 @@ class NinjaGenerator {
                 return false;
             }
             if((ninjaDistance < cannonRadius)){
-                // make gameover 
+                // make gameover (for that particular cannon)
                 this.c_state.gameOver = true;
                 n.unDraw(ctx);
                 return false

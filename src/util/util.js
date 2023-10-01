@@ -5,8 +5,6 @@ const setupCanvas = (can) => {
 
 //between a ninja and a bullet;
 const detectCollision = (n_topCornerPosition, b_position) => {
-    // 
-    // console.log('loooooooooooooooooooooooooooog', n_topCornerPosition)
     const {x: n_x, y: n_y} = n_topCornerPosition;
     const {x: b_x, y: b_y} = b_position
 
@@ -17,7 +15,6 @@ const detectCollision = (n_topCornerPosition, b_position) => {
     }
     return false;
 }
-
 
 const getNinjaAngleAndDistance = (ninjaArr) => {
     const dict = {};

@@ -11,7 +11,6 @@ class Controls {
 
     #keyBoardEventListeners(){ 
        document.onkeydown = (event) => {
-            // console.log('this is the key', event);
             switch(event.key){
                 case 'ArrowRight':
                     this.clockwise = true
@@ -26,7 +25,6 @@ class Controls {
                 case 'r':
                     //
                     if(this.c_state.gameOver){
-                        // gameScore = 0;
                         this.c_state.score = 0; 
                         this.c_state.gameOver = false;
                     }
@@ -50,7 +48,6 @@ class Controls {
     }
 
     drawSensors(ctx, ninjaArr){
-        // this.ninjaArr = ninjaArr;
         this.sensorContainer.draw(ctx, getNinjaAngleAndDistance(ninjaArr));
     }
 }

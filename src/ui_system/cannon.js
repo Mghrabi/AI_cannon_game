@@ -17,6 +17,7 @@ class Cannon {
         this.bulletGenerator = new bulletGenerator(width, this.c_state);
         this.cannon_net = new Network([8, 3]);
         this.living_time = this.living_time;
+        this.increaseScoreByTime = 7000; //cannons lives longer gain score
     }
 
     increaseScoreBasedOnTime(){
@@ -27,7 +28,7 @@ class Cannon {
                     this.c_state.score+=LIVING_POINTS;
                 }
                 this.countTime = false;
-            }, 7000);
+            }, this.increaseScoreByTime);
         }
     }
 
@@ -36,14 +37,10 @@ class Cannon {
             this.c_state.gameOver = true;
         }
         this.ninjaGenerator.ninjas = this.ninjaGenerator.ninjas;
-        //sensors + currentCannonAngle
+        //inputs: sensors + currentCannonAngle
         const input = [...(this.controls.sensorContainer.sensors.map(s => s.reading/200)), this.cannonCurrentAngle/200];
-        // console.log('this.cannon_net', this.cannon_net)
-        // console.log('input', input);
         let out = this.cannon_net.forward(input.map(i => i));
-        // console.log(this.cannon_net.layers)
         this.action(this.cannonType, out);
-        // this.action('AI', out);
         this.draw(ctx);
     }
 
@@ -64,7 +61,7 @@ class Cannon {
             return
         }
 
-        //otherwise
+        //otherwise (manual)
         if (this.controls.clockwise) {
             this.cannonCurrentAngle = (this.cannonCurrentAngle + this.sensetivity) % 360;
         }
@@ -82,11 +79,7 @@ class Cannon {
 
         this.controls.drawSensors(ctx, this.ninjaGenerator.ninjas)
         ctx.save();
-        // console.log('gameScore', gameScore)
-        //gameOver
        if(this.c_state.gameOver){
-            //ui for gameover with respect to cannon
-            // this.clear(ctx);
             return 
         }
 
@@ -106,9 +99,8 @@ class Cannon {
         ctx.translate(canvas.width / 2, canvas.height / 2)
         const angleValue = this.cannonCurrentAngle * 2 * Math.PI / 360
         ctx.rotate(angleValue);
-        // ctx.translate(-canvas.width / 2, -canvas.height / 2)
 
-        //create the cannon gun
+        //create the cannon tip 
         ctx.beginPath();
         ctx.fillStyle = 'black'
         const marginValue = 15
@@ -127,10 +119,8 @@ class Cannon {
         ctx.fill();
         ctx.font = "48px serif";
         ctx.fillStyle = "white";
-        // ctx.fillText("YOUR SCORE: "+ gameScore, canvas.width/2 - 140, canvas.height/2);
         ctx.fillText("YOUR SCORE: "+ this.c_state.score, canvas.width/2 - 140, canvas.height/2);
         this.bulletGenerator.clear(ctx);
     }
-
 
 }

@@ -13,12 +13,10 @@ class Sensor{
     }
 
     draw(ctx, reading){
-        // this.reading = reading;
         ctx.save();
         ctx.translate(canvas.width / 2, canvas.height / 2);
         ctx.beginPath();
         ctx.moveTo(0,0);
-        // console.log('readingeeeeeeeeeeeeeee with angleeeeeeeee', reading, this.angle)
         ctx.strokeStyle= 'yellow';
         if(reading == -1 || !reading){
             ctx.strokeStyle= 'gray';

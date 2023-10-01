@@ -26,26 +26,20 @@ class bulletGenerator {
             const hitNinja = this.ninjasArr.some((n) => {
                 const hit = detectCollision(n.topRightCornerPosition, b.currentPosition);
                 if(hit){
-                    n.remove = true;
+                    n.remove = true; //ninjaGenerator constantly check every n.remove and if true -> removes ui
                 }
                 return hit;
             });
 
-            
-
-            //console.log('hitNinja')
-
             if(hitNinja){
-                // this.ninjasArr.push(2);
-                b.unDraw(ctx);
-                // gameScore+=1;
+                b.unDraw(ctx); //remove bullet if hit
                 this.c_state.score +=SUCCESSFUL_BULLET;
                 return false;
             }                  
 
+            //remove bullet if passed out the game frame
             if(Math.abs(b.currentPosition.x) > canvas.width/2 - 10  || Math.abs(b.currentPosition.y) > canvas.height/2 - 10){
                 b.unDraw(ctx);
-                // gameScore-=1;
                 this.c_state.score -=MISSED_BULLET;
                 return false
             }
@@ -56,20 +50,12 @@ class bulletGenerator {
 
     draw(ctx){
         this.generateProcess(ctx);
-        //create a bullet shape
-        // console.log('this.bullets', this.bullets);
-
     }
 
-    //this will be called by cannon
     clear(ctx){
         this.bullets = this.bullets.filter(b => {
-            // console.log('unDraw the bullet')
             b.unDraw(ctx);
             return false;
         })
-        // console.log('now this.bullets', this.bullets)
     }
-
-
 }

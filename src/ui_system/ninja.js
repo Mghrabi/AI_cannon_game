@@ -5,7 +5,6 @@ class Ninja{
         this.imageSize = imageSize;
         this.id = id;
         this.angleRadian = angle * Math.PI / 180;
-        //good value for now (you don't need to change it for each Ninja)
         this.radius = 350;
         this.currentPosition = { x: this.radius* Math.sin(this.angleRadian), y: this.radius * -Math.cos(this.angleRadian) };
         this.topRightCornerPosition = { x: this.radius* Math.sin(this.angleRadian) + this.imageSize/2, y: this.radius * -Math.cos(this.angleRadian) - this.imageSize/2 };
@@ -14,8 +13,6 @@ class Ninja{
         this.speed = 1//for linear movement
         this.rotationAngle = 0 ;
         this.distanceFromCenter = canvas/2;
-        //if Math.abs is less than the circle cannon radius then
-        //you die
     }
 
     update(ctx){
@@ -35,8 +32,6 @@ class Ninja{
         ctx.save();
         ctx.beginPath();
         ctx.translate(canvas.width / 2, canvas.height / 2);
-        // ctx.rect(this.currentPosition.x,this.currentPosition.y, 20,20);
-        // ctx.drawImage(this.image,  this.currentPosition.x, this.currentPosition.y, 40,40)
         ctx.translate(this.currentPosition.x , this.currentPosition.y );
         ctx.rotate(this.rotationAngle * Math.PI/180);
         ctx.translate(-this.currentPosition.x - this.imageSize/2, -this.currentPosition.y - this.imageSize/2);
@@ -52,9 +47,6 @@ class Ninja{
         ctx.translate(this.currentPosition.x , this.currentPosition.y);
         ctx.drawImage(this.image,  this.currentPosition.x, this.currentPosition.y, 0, 0)
         ctx.fill();
-        // ctx.font = "48px serif";
-        // ctx.fillStyle = "green";
-        // ctx.fillText("+1", this.currentPosition.x, this.currentPosition.y);
         ctx.restore();
     }
 
