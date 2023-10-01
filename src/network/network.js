@@ -93,9 +93,9 @@ class Layer {
             value+=layer.biases[i];
             // console.log('value', typeof(value))
             if(value>0){
-                layer.outputs[i] = 1;
+                layer.outputs[i] = Math.tanh(value);
             }else {
-                layer.outputs[i] = 0;
+                layer.outputs[i] = Math.tanh(value);
             }
         }
        return layer.outputs; 

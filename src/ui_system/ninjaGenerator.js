@@ -6,7 +6,7 @@ class NinjaGenerator {
         this.generateNow = true;
         this.c_state = c_state;
         //1500ms 
-        this.generationTime = 1700; //2 seconds
+        this.generationTime = 6000; //2 seconds (used to be 1700)
         this.idNumber = 0;
         this.ninjaCount = 0;
     }
@@ -33,11 +33,11 @@ class NinjaGenerator {
         if (this.generateNow) {
             this.generateNow = false;
             setTimeout(() => {
-                this.addNinja(generationSequence[this.ninjaCount]);
-                this.addNinja(generationSequence[this.ninjaCount]);
-                this.addNinja(generationSequence[this.ninjaCount]);
-                this.addNinja(generationSequence[this.ninjaCount]);
-                // this.addNinja(chosenAngle1);
+                // this.addNinja(generationSequence[this.ninjaCount]);
+                // this.addNinja(generationSequence[this.ninjaCount]);
+                // this.addNinja(generationSequence[this.ninjaCount]);
+                // this.addNinja(generationSequence[this.ninjaCount]);
+                this.addNinja(chosenAngle1);
                 // this.addNinja(chosenAngle2);
                 // this.addNinja(chosenAngle3);
                 this.generateNow = true;

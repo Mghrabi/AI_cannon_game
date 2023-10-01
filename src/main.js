@@ -36,7 +36,7 @@ const generateCannons = (num) => {
             // console.log('layers in newCannon', newCannon.cannon_net.layers);
             //this line is producing an error (it makes model), it affects the best_cannon model as well
             //which means that the smartNetworkLayers is passed as a reference, all cannons share the same network
-            Network.mutate(newCannon.cannon_net, 0.02)
+            Network.mutate(newCannon.cannon_net, 0.2)
             console.log('newCannon layers after', newCannon.cannon_net.layers);
             console.log('cannons length', cannons.length);
             console.log('---------------------------------------------')
@@ -49,14 +49,14 @@ const generateCannons = (num) => {
         }
     }
 }
-generateCannons(100);
+// generateCannons(100);
 
 
 const gameController = new GameController();
-// save_button.addEventListener('click', (e) => {
-//     save();
-//     console.log('saved')
-// })
+save_button.addEventListener('click', (e) => {
+    save();
+    console.log('saved')
+})
 const save = () => {
     // const network_without_stringify = cannons[1].cannon_net;
     // console.log('network_without_stringify ', network_without_stringify)

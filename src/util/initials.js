@@ -4,8 +4,8 @@ let cannonHeight = 70;
 let cannonRadius = 10;
 
 //game rules
-const MISSED_BULLET = 5; 
-const SUCCESSFUL_BULLET= 5; 
+const MISSED_BULLET = 1;
+const SUCCESSFUL_BULLET= 10; 
 const LIVING_POINTS= 5; //points given every 5s if the game is still running
 
 

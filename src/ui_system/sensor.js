@@ -19,7 +19,7 @@ class Sensor{
         ctx.beginPath();
         ctx.moveTo(0,0);
         // console.log('readingeeeeeeeeeeeeeee with angleeeeeeeee', reading, this.angle)
-        ctx.strokeStyle= 'gray';
+        ctx.strokeStyle= 'yellow';
         if(reading == -1 || !reading){
             ctx.strokeStyle= 'gray';
         }else {

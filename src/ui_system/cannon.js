@@ -16,6 +16,7 @@ class Cannon {
         this.controls = new Controls(this.c_state)
         this.bulletGenerator = new bulletGenerator(width, this.c_state);
         this.cannon_net = new Network([8, 3]);
+        this.living_time = this.living_time;
     }
 
     increaseScoreBasedOnTime(){
@@ -23,10 +24,10 @@ class Cannon {
             this.countTime = true;
             setTimeout(() => {
                 if(!this.c_state.gameOver){
-                    this.c_state.score+=LIVING_POINTS; 
+                    this.c_state.score+=LIVING_POINTS;
                 }
                 this.countTime = false;
-            }, 5000);
+            }, 7000);
         }
     }
 
@@ -36,7 +37,7 @@ class Cannon {
         }
         this.ninjaGenerator.ninjas = this.ninjaGenerator.ninjas;
         //sensors + currentCannonAngle
-        const input = [...(this.controls.sensorContainer.sensors.map(s => s.reading)), this.cannonCurrentAngle];
+        const input = [...(this.controls.sensorContainer.sensors.map(s => s.reading/200)), this.cannonCurrentAngle/200];
         // console.log('this.cannon_net', this.cannon_net)
         // console.log('input', input);
         let out = this.cannon_net.forward(input.map(i => i));
@@ -49,13 +50,13 @@ class Cannon {
 
     action(type=null, out=null) {
         if(type=='AI'){
-            if (out[2]) {
+            if (out[2]>0.5) {
                 this.cannonCurrentAngle = (this.cannonCurrentAngle + this.sensetivity) % 360;
             }
-            if (out[0]) {
+            if (out[0]>0.5) {
                 this.cannonCurrentAngle = (this.cannonCurrentAngle - this.sensetivity) % 360;
             }
-            if (out[1]==0 && this.bulletFlag){
+            if (out[1]<=0.5 && this.bulletFlag){
                 this.bulletFlag = false;
                 this.bulletGenerator.addBullet(this.position, this.cannonCurrentAngle);
                 setTimeout(() => {this.bulletFlag = true}, this.bulletTimeDelay)

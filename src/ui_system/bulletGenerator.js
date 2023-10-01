@@ -31,6 +31,8 @@ class bulletGenerator {
                 return hit;
             });
 
+            
+
             //console.log('hitNinja')
 
             if(hitNinja){

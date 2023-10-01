@@ -17,10 +17,10 @@ class Info {
         ctx.fill();
         ctx.font = "48px serif";
         ctx.fillStyle = "yellow";
-        ctx.fillText('Gen', 10, canvas.height/2 + -250);
+        ctx.fillText('(Gen)', 0, canvas.height/2 + -200);
         ctx.fillText("Highest Score "+ this.previous_best_score, canvas.width/2 - 200, canvas.height/2 + -200);
         ctx.fillStyle = "white";
-        ctx.fillText("Num Lived Cannons: "+ this.num_lived_cannons, canvas.width/2 - 250, canvas.height/2);
+        ctx.fillText("N Living Cannons: "+ this.num_lived_cannons, canvas.width/2 - 250, canvas.height/2);
         ctx.fillText("Best Cannon Score: "+ this.current_score, canvas.width/2 - 250, canvas.height/2+100);
     }
 }
