@@ -1,6 +1,7 @@
 class Network {
     constructor(arr_neurons){
         this.layers = new Array(arr_neurons.length);
+        // console.log('this is what a layers are ', this.layers);
         for (let i=0; i<arr_neurons.length; i++){
             //we won't create a layer for the inputs layer (sensors + cannon_angle)
             if(i==0){
@@ -22,15 +23,40 @@ class Network {
         return this.layers[this.layers.length - 1].outputs
     }
 
+    static mutate(network,percentage=1){
+        network.layers.forEach(layer => {
+            for(let i=0;i<layer.weights.length;i++){
+                for(let j=0;j<layer.weights[i].length;j++){
+                    // console.log('here is before', layer.weights[i][j])
+                    layer.weights[i][j]=lerp(
+                        layer.weights[i][j],
+                        Math.random()*2-1,
+                       percentage 
+                    )
+                    // console.log('here is after', layer.weights[i][j])
+                }
+
+                layer.biases[i]=lerp(
+                    layer.biases[i],
+                    Math.random()*2-1,
+                    percentage 
+                )
+            }
+        });
+    }
+
 }
 
 class Layer {
-    constructor(n_neurons, n_previous) {
+    constructor(n_neurons, n_previous, inputLayer=false) {
         //n_0 is number of neurons of layer 0 
         //previous = n_0 * m_examples (m_examples will be of 1 in game training)
         //this layer =>  weights_of_this_layer = n_1 * n_0
         //then we can apply mutrix multiplication between this l_1 * l_0_ouput 
-
+        this.inputLayer = inputLayer;
+        if(inputLayer){
+            this.n_neurons = n_neurons;
+        } 
         this.n_neurons = n_neurons;
         this.n_features = n_previous;
 
@@ -67,13 +93,12 @@ class Layer {
             value+=layer.biases[i];
             // console.log('value', typeof(value))
             if(value>0){
-                layer.outputs[i] = 1;
+                layer.outputs[i] = Math.tanh(value);
             }else {
-                layer.outputs[i] = 0;
+                layer.outputs[i] = Math.tanh(value);
             }
         }
        return layer.outputs; 
-        
         
     }
 

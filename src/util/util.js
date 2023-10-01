@@ -1,5 +1,3 @@
-// to split the screen between the two canvases 
-
 const setupCanvas = (can) => {
     can.height = window.innerHeight;
     can.width = window.innerWidth / 2;
@@ -32,3 +30,8 @@ const getNinjaAngleAndDistance = (ninjaArr) => {
     }
     return dict;
 }
+
+const lerp = (A,B,t) => {
+    return A+(B-A)*t;
+}
+

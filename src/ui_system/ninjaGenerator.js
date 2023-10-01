@@ -6,12 +6,13 @@ class NinjaGenerator {
         this.generateNow = true;
         this.c_state = c_state;
         //1500ms 
-        this.generationTime = 1700; //2 seconds
+        this.generationTime = 6000; //2 seconds (used to be 1700)
         this.idNumber = 0;
+        this.ninjaCount = 0;
     }
 
     update(ctx) {
-        console.log('this.ninjas', this.ninjas)
+        // console.log('this.ninjas', this.ninjas)
         if(this.c_state.gameOver){
             //logic for ui
             this.clear(ctx);
@@ -27,12 +28,18 @@ class NinjaGenerator {
         //pick random location;
         const chosenAngle1 = this.possibleAngles[Math.floor(Math.random() * this.possibleAngles.length)]
         const chosenAngle2 = this.possibleAngles[Math.floor(Math.random() * this.possibleAngles.length)]
+        const chosenAngle3 = this.possibleAngles[Math.floor(Math.random() * this.possibleAngles.length)]
         //generate every 1 seconds
         if (this.generateNow) {
             this.generateNow = false;
             setTimeout(() => {
+                // this.addNinja(generationSequence[this.ninjaCount]);
+                // this.addNinja(generationSequence[this.ninjaCount]);
+                // this.addNinja(generationSequence[this.ninjaCount]);
+                // this.addNinja(generationSequence[this.ninjaCount]);
                 this.addNinja(chosenAngle1);
-                this.addNinja(chosenAngle2);
+                // this.addNinja(chosenAngle2);
+                // this.addNinja(chosenAngle3);
                 this.generateNow = true;
             }, this.generationTime);
         }
@@ -42,6 +49,7 @@ class NinjaGenerator {
         //for now 
         this.ninjas.push(new Ninja(randomAngle, this.idNumber))
         this.idNumber+=1;
+        this.ninjaCount+=1;
     }
 
     generateProcess(ctx){

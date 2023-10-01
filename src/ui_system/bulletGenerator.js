@@ -31,20 +31,22 @@ class bulletGenerator {
                 return hit;
             });
 
+            
+
             //console.log('hitNinja')
 
             if(hitNinja){
                 // this.ninjasArr.push(2);
                 b.unDraw(ctx);
                 // gameScore+=1;
-                this.c_state.score +=1;
+                this.c_state.score +=SUCCESSFUL_BULLET;
                 return false;
             }                  
 
             if(Math.abs(b.currentPosition.x) > canvas.width/2 - 10  || Math.abs(b.currentPosition.y) > canvas.height/2 - 10){
                 b.unDraw(ctx);
                 // gameScore-=1;
-                this.c_state.score -=1;
+                this.c_state.score -=MISSED_BULLET;
                 return false
             }
             b.update(ctx);

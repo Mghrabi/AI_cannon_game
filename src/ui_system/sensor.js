@@ -1,6 +1,7 @@
 class Sensor{
-    constructor(angle){
+    constructor(angle, c_state){
         this.angle = angle;
+        this.c_state = c_state;
         this.angleRadian = angle * Math.PI / 180;
         this.detected = false;
         this.reading = -1; //-1 means it detects nothing at the moment
@@ -18,10 +19,11 @@ class Sensor{
         ctx.beginPath();
         ctx.moveTo(0,0);
         // console.log('readingeeeeeeeeeeeeeee with angleeeeeeeee', reading, this.angle)
-        if(reading == -1){
+        ctx.strokeStyle= 'yellow';
+        if(reading == -1 || !reading){
             ctx.strokeStyle= 'gray';
         }else {
-            ctx.strokeStyle= 'red';
+            // ctx.strokeStyle= 'yellow';
         }
         const lineLength = reading == -1?this.radius:reading;
         ctx.lineTo(lineLength* Math.sin(this.angleRadian), lineLength * -Math.cos(this.angleRadian))
