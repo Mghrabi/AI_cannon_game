@@ -32,6 +32,7 @@ const generateCannons = (num) => {
         for (let i = 1; i < num; i++) {
             const newCannon = new Cannon(cannonWidth, cannonHeight, 'AI', sensetivity, id = i);
             newCannon.cannon_net.layers = JSON.parse(localStorage.getItem('best_network_layers1'));
+            //0.2 mutation, makes new generated networks to deviate 20% from the original model 
             Network.mutate(newCannon.cannon_net, 0.2)
             cannons.push(newCannon);
         }
@@ -42,7 +43,7 @@ const generateCannons = (num) => {
         }
     }
 }
-// generateCannons(100);
+// generateCannons(50);
 
 //save the best cannon network in localStorage 
 const save = () => {
