@@ -4,14 +4,14 @@
 
 A simple cannon game with a very simple network that trained to play it (not mature enough yet) using Genetic algorithm. The whole system is created from scratch using vanilla js including the network.
 
-# Load the game and play it
+## Load the game and play it
 To load the game you just need to copy the `index.html` path and paste in the browser.
 
 You can disable the AI mode and play the game yourself if you wish by going to `main.js` and replace `AI` parameter with `null` like so:
 ```
 cannons[0] = new Cannon(cannonWidth, cannonHeight, null, sensetivity, id = 0);
 ```
-# Load network state and train it
+## Load network state and train it
 
 
 If you wish to start training the network from the last network state I had, you can simply copy the following code below and paste it in the browser console, and that will take care of loading the network state and preserve it even after refreshing the page.
@@ -24,7 +24,7 @@ To train the model with **N** parallel cannons, you can uncomment that part of t
 // generateCannons(50);
 ```
 
-# Contribution
+## Contribution
 I will be considering putting instructions on the code structure, how to train the network and even how to add stronger algorithms if you wish to do. But till the moment if you managed to understand the code yourself and get to a better network state, feel free to make a PR to this repo and I will be happy to update it.
 
 Note: make sure to save a copy of the best-network state somewhere because sometimes browser data can be lost after turning pc off.
